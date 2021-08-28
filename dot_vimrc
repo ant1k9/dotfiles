@@ -1,0 +1,145 @@
+" =============================================== "
+" Vundle Configuration "
+" =============================================== "
+
+set nocompatible
+filetype off
+
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plugin 'scrooloose/nerdtree'
+Plugin 'frazrepo/vim-rainbow'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'mattn/emmet-vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'honza/vim-snippets'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'davidhalter/jedi-vim' 
+Plugin 'majutsushi/tagbar'
+Plugin 'puremourning/vimspector'
+Plugin 'buoto/gotests-vim'
+Plugin 'SirVer/ultisnips'
+
+call vundle#end()
+
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rakr/vim-one'
+Plug 'wellle/context.vim'
+call plug#end()
+
+let g:ale_pattern_options = {'\.go$': {'ale_enabled': 0}}
+let g:AutoPairsFlyMode = 1
+
+" =============================================== "
+" File Configurations "
+" =============================================== "
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab ts=4 sw=4 ai
+
+set number
+set smartindent
+set autoindent
+
+set shiftround
+set smarttab
+set copyindent
+set t_Co=256
+set cursorline
+
+" colorscheme Chasing_Logic
+" colorscheme woju
+" colorscheme blackboard
+" colorscheme OceanicNext
+" colorscheme SerialExperimentsLain
+" colorscheme alduin
+" colorscheme adventurous
+" colorscheme basic-dark
+colorscheme VIvid
+set background=dark
+
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:acp_completeoptPreview = 1
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
+let g:vimspector_enable_mappings='HUMAN'
+
+filetype on
+filetype plugin on
+filetype indent on
+
+autocmd FileType make set noexpandtab
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
+
+augroup vagrant
+    au!
+    au BufRead,BufNewFile Vagrantfile set filetype=ruby
+augroup END
+
+set laststatus=2 " Always display the statusline in all windows
+set showtabline=2 " Always display the tabline, even if there is only one tab
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set t_Co=256
+set pastetoggle=<F2>
+set incsearch
+noremap <F3> :set invnumber<CR>
+
+set autoread
+au CursorHold * checktime
+
+" Highlight Extra Whitespaces
+:highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+:match ExtraWhitespace /\s\+$/
+
+:syntax on
+:set hlsearch
+:highlight clear CursorLine
+
+" Folding
+:set foldmethod=indent
+:set viminfo='100,<200,s50,h
+
+" mapleader to defis
+:let mapleader = "-"
+:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+:nnoremap <leader>sv :source $MYVIMRC<cr>
+:nnoremap <leader>qw :wq<cr>
+:nnoremap l0 :let @/=""<cr>
+:inoremap jk <esc>:w<cr>
+
+" Move line up and down
+:nnoremap <c-j> ddp
+:nnoremap <c-k> ddkP
+
+" Useful shortcuts
+:nnoremap j zzj
+:nnoremap k zzk
+:nnoremap <leader>s :%s/ \+$//g<CR>
+:nnoremap <leader>, :s/, /,\r/<CR>
+:nnoremap <leader>0 :s/)/,\r)/<CR>
+:nnoremap <leader>9 :s/(/(\r/<CR>
+:nnoremap <leader>q :colorscheme random<CR>
+:nnoremap tn :tabnew<CR>
+
+map <Leader><Leader>l <Plug>(easymotion-bd-l)
+map <Leader><Leader>w <Plug>(easymotion-bd-w)
+map <Leader><Leader>f <Plug>(easymotion-bd-f)
+
+" include extra configs
+if filereadable(expand('~/.work.vimrc'))
+    source $HOME/.work.vimrc
+endif
