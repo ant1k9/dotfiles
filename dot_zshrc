@@ -1,0 +1,83 @@
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/anillarionov/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="darkblood"
+
+export EDITOR=vim
+source $ZSH/oh-my-zsh.sh
+source $HOME/.cargo/env
+
+[[ $PATH == *$HOME/go/bin* ]] || export PATH=$PATH:$HOME/go/bin
+[[ $PATH == *$HOME/bin* ]] || export PATH=$PATH:$HOME/bin
+[[ $PATH == *$HOME/.tmuxifier/bin* ]] || export PATH=$PATH:$HOME/.tmuxifier/bin
+
+eval "$(direnv hook zsh)"
+
+# The next line updates PATH for Yandex Cloud CLI.
+if [ -f '/Users/anillarionov/yandex-cloud/path.bash.inc' ]; then source '/Users/anillarionov/yandex-cloud/path.bash.inc'; fi
+
+# The next line enables shell command completion for yc.
+if [ -f '/Users/anillarionov/yandex-cloud/completion.zsh.inc' ]; then source '/Users/anillarionov/yandex-cloud/completion.zsh.inc'; fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
+
+alias amend='git add . && git commit --amend'
+alias checkout='git checkout'
+alias clear_containers='docker rm $(docker ps --all --filter "ancestor=dev_migrate" -q)'
+alias gci='git add . && git commit'
+alias gmt='go mod tidy'
+alias gp='git push'
+alias gpl='git pull'
+alias k=kubectl
+alias klogs='kubectl logs'
+alias kpo='kubectl get pods'
+alias master='git checkout master'
+alias merge='git merge'
+alias noproto='egrep -v ".proto"'
+alias notest='egrep -v "test|pb|mock|//"'
+alias originpush='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
+alias python=python3
+alias r='source ~/.zshrc'
+alias st='git status'
+alias vimrc='vim ~/.vimrc'
+alias zrc='vim ~/.zshrc'
+
+function add() {
+    [[ "$#" == 2 ]] && \
+        echo "alias $1='$2'" >> ~/.zshrc
+    r
+}
+
+function grf() {
+    grep -rn "$1" .
+}
+
+function grfi() {
+    grep -rni "$1" .
+}
+
+function jgrep() {
+    gron | grep -i "$1" | gron -u | jq
+}
+
+function mr {
+    [[ $# == 1 ]] \
+        && glab mr create \
+            --title "$(git log -n1 --oneline --format=format:'%s')" \
+            --description "$(git log -n1 --oneline --format=format:'%s')" \
+            --remove-source-branch \
+            --target-branch "$1"
+}
+
+function gitreset() {
+    [[ "$#" == 1 ]] && \
+        cp $HOME/.gitconfig{.$1,} && \
+        cp $HOME/.git-credentials{.$1,}
+}
+
+[[ -f $HOME/.work.zshrc ]] && source $HOME/.work.zshrc
