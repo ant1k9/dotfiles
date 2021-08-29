@@ -78,4 +78,11 @@ function gitreset() {
         cp $HOME/.git-credentials{.$1,}
 }
 
+function chezmoi-sync() {
+    chezmoi re-add
+    chezmoi git add .
+    chezmoi git commit -- -m "Push local changes $(date '+%Y-%m-%d %H:%M:%S')"
+    chezmoi git push
+}
+
 [[ -f $HOME/.work.zshrc ]] && source $HOME/.work.zshrc
