@@ -10,32 +10,69 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plugin 'scrooloose/nerdtree'
-Plugin 'frazrepo/vim-rainbow'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'mattn/emmet-vim'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'honza/vim-snippets'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'davidhalter/jedi-vim' 
-Plugin 'majutsushi/tagbar'
-Plugin 'puremourning/vimspector'
 Plugin 'buoto/gotests-vim'
+Plugin 'cespare/vim-toml'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plugin 'flazz/vim-colorschemes'
+Plugin 'frazrepo/vim-rainbow'
+Plugin 'honza/vim-snippets'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'mattn/emmet-vim'
+Plugin 'neco-ghc'
+Plugin 'posva/vim-vue'
+Plugin 'puremourning/vimspector'
+Plugin 'racer-rust/vim-racer'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'shougo/vimshell.vim'
+Plugin 'simnalamburt/vim-mundo'
 Plugin 'SirVer/ultisnips'
+Plugin 'tomtom/tlib_vim'
+Plugin 'udalov/kotlin-vim'
+Plugin 'VundleVim/Vundle.vim'
 
 call vundle#end()
 
 call plug#begin('~/.vim/plugged')
+
+Plug 'airblade/vim-gitgutter'
+Plug 'davidhalter/jedi-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'mattn/emmet-vim'
+Plug 'mattn/vim-lsp-settings'
+Plug 'm-pilia/vim-ccls'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-jedi'
+Plug 'ncm2/ncm2-path'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'prabirshrestha/vim-lsp'
+Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 Plug 'rakr/vim-one'
+Plug 'roxma/nvim-yarp'
+Plug 'vuciv/vim-bujo'
+Plug 'w0rp/ale'
 Plug 'wellle/context.vim'
+Plug 'Yggdroot/indentLine'
+
 call plug#end()
+
+Bundle 'yuratomo/java-api-complete'
+Bundle 'yuratomo/java-api-javax'
+Bundle 'yuratomo/java-api-org'
+Bundle 'yuratomo/java-api-sun'
+Bundle 'yuratomo/java-api-servlet2.3'
+Bundle 'yuratomo/java-api-android'
+Bundle 'yuratomo/java-api-junit'
+
+" =============================================== "
 
 let g:ale_pattern_options = {'\.go$': {'ale_enabled': 0}}
 let g:AutoPairsFlyMode = 1
@@ -57,18 +94,30 @@ set shiftround
 set smarttab
 set copyindent
 set t_Co=256
+set history=1000
 set cursorline
+
+set laststatus=2 " Always display the statusline in all windows
+set showtabline=2 " Always display the tabline, even if there is only one tab
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set pastetoggle=<F2>
+set incsearch
+
+set autoread
+au CursorHold * checktime
+
+set foldmethod=indent
+set viminfo='1000,<100,s10,h
 
 " colorscheme Chasing_Logic
 " colorscheme woju
 " colorscheme blackboard
 " colorscheme OceanicNext
-" colorscheme SerialExperimentsLain
-" colorscheme alduin
 " colorscheme adventurous
-" colorscheme basic-dark
-colorscheme VIvid
-set background=dark
+" colorscheme twitchy
+" colorscheme reloaded
+" colorscheme sialoquent
+colorscheme badwolf
 
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
@@ -78,66 +127,134 @@ let g:ycm_show_diagnostics_ui = 0
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
 let g:vimspector_enable_mappings='HUMAN'
 
+" disable all linters as that is taken care of by coc.nvim
+let g:go_diagnostics_enabled = 0
+let g:go_metalinter_enabled = []
+
+" don't jump to errors after metalinter is invoked
+let g:go_jump_to_error = 0
+
+" run go imports on file save
+let g:go_fmt_command = "goimports"
+
+" automatically highlight variable your cursor is on
+" let g:go_auto_sameids = 0
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+
+" c++ syntax highlighting
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+
+let g:ccls_log_file = expand('/tmp/ccls.log.txt')
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
 filetype on
 filetype plugin on
 filetype indent on
 
 autocmd FileType make set noexpandtab
-autocmd FileType javascript setlocal ts=2 sts=2 sw=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+autocmd FileType scss setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+autocmd FileType vue setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+autocmd FileType fizz setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+autocmd FileType haskell setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 
 augroup vagrant
     au!
     au BufRead,BufNewFile Vagrantfile set filetype=ruby
 augroup END
 
-set laststatus=2 " Always display the statusline in all windows
-set showtabline=2 " Always display the tabline, even if there is only one tab
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-set t_Co=256
-set pastetoggle=<F2>
-set incsearch
-noremap <F3> :set invnumber<CR>
+au BufNewFile,BufRead *.java    setl omnifunc=javaapi#complete
 
-set autoread
-au CursorHold * checktime
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
 
 " Highlight Extra Whitespaces
 :highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 :match ExtraWhitespace /\s\+$/
 
 :syntax on
-:set hlsearch
-:highlight clear CursorLine
-
-" Folding
-:set foldmethod=indent
-:set viminfo='100,<200,s50,h
+hi Normal guibg=NONE ctermbg=NONE
+hi NonText ctermbg=NONE
+highlight clear CursorLine
+set hlsearch
 
 " mapleader to defis
-:let mapleader = "-"
-:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-:nnoremap <leader>sv :source $MYVIMRC<cr>
-:nnoremap <leader>qw :wq<cr>
-:nnoremap l0 :let @/=""<cr>
-:inoremap jk <esc>:w<cr>
+let mapleader = "-"
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>qw :wq<cr>
+nnoremap l0 :let @/=""<cr>
+inoremap jk <esc>:w<cr>
 
 " Move line up and down
-:nnoremap <c-j> ddp
-:nnoremap <c-k> ddkP
+nnoremap <c-j> ddp
+nnoremap <c-k> ddkP
+
+nnoremap <silent> man :call <SID>man_page()<CR>
 
 " Useful shortcuts
-:nnoremap j zzj
-:nnoremap k zzk
-:nnoremap <leader>s :%s/ \+$//g<CR>
-:nnoremap <leader>, :s/, /,\r/<CR>
-:nnoremap <leader>0 :s/)/,\r)/<CR>
-:nnoremap <leader>9 :s/(/(\r/<CR>
-:nnoremap <leader>q :colorscheme random<CR>
-:nnoremap tn :tabnew<CR>
+nnoremap j zzj
+nnoremap k zzk
+nnoremap <leader>s :%s/ \+$//g<CR>
+nnoremap <leader>, :s/, /,\r/<CR>
+nnoremap <leader>0 :s/)/,\r)/<CR>
+nnoremap <leader>9 :s/(/(\r/<CR>
+nnoremap <leader>q :colorscheme random<CR>
+nnoremap tn :tabnew<CR>
 
 map <Leader><Leader>l <Plug>(easymotion-bd-l)
 map <Leader><Leader>w <Plug>(easymotion-bd-w)
 map <Leader><Leader>f <Plug>(easymotion-bd-f)
+
+nmap gd <Plug>(coc-definition)
+nmap gy <Plug>(coc-type-definition)
+nmap gi <Plug>(coc-implementation)
+nmap gr <Plug>(coc-references)
+
+nnoremap loc A # [LOCAL]<ESC>
+nnoremap stg A # [STG]<ESC>
+nnoremap prod A # [PROD]<ESC>
+
+command! OpenInGitlab call <SID>openInGitlab()
+
+function! s:openInGitlab()
+    let repo = system("git remote get-url --push origin | tr -d '\n'")
+    let filename = expand("%:.")
+    let lineNumber = line(".")
+    let sysCommand = printf("!open '%s/-/blob/master/%s\\#L%d'", repo, filename, lineNumber)
+    exec sysCommand
+endfunction
 
 " include extra configs
 if filereadable(expand('~/.work.vimrc'))
