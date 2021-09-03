@@ -1,3 +1,6 @@
-map gi :GoImplements<CR>
-map gr :GoReferrers<CR>
-map gc :GoCallers<CR>
+nmap gi :GoImplements<CR>
+nmap gr :GoReferrers<CR>
+nmap gc :GoCallers<CR>
+nmap gd :GoDef<CR>
+nmap gf :GoFillStruct<CR>
+nmap gif :GoIfErr<CR>

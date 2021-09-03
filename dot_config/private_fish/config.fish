@@ -50,6 +50,7 @@ alias gd='git diff'
 alias gitci='git add .; git commit -a'
 alias gp='git push'
 alias gpl='git pull'
+alias last_commit='git log -1 --pretty=%B'
 alias master='git checkout master'
 alias st='git status'
 
@@ -217,6 +218,23 @@ function ungron
     if test (count $argv) -eq 1
         gron | grep -i "$argv[1]" | gron -u | jq
     end
+end
+
+function chezmoi-re-add
+    for file in ~/.vimrc ~/.config/fish/config.fish ~/.tmux.conf ~/.vim/ftplugin
+        chezmoi add -r $file
+    end
+end
+
+function chezmoi-sync
+    chezmoi git add .
+    chezmoi git commit -- -m "Push local changes "(date '+%Y-%m-%d %H:%M:%S')
+    chezmoi git push
+end
+
+function blog-notifier
+    ssh $BLOG_NOTIFIER_HOST -i $BLOG_NOTIFIER_KEY_RSA \
+        "cd ~/blog-notifier && ./blog_notifier.py $argv"
 end
 
 test -f ~/.config/fish/pass.fish && source ~/.config/fish/pass.fish
