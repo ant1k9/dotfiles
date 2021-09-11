@@ -1,0 +1,14 @@
+.ccls-cache
+
+data
+tmp
+
+.envrc
+.run
+
+*.swp
+*.swo
+*.swn
+
+__debug
+__debug_bin

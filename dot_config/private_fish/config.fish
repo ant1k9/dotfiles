@@ -23,6 +23,7 @@ appendToPath "/home/antik/.npm-global/bin"
 appendToPath "/home/antik/.fly/bin"
 appendToPath "/var/lib/snapd/snap/bin"
 
+alias allow='direnv allow'
 alias c='curl'
 alias cloc='cloc --exclude-list-file=.gitignore'
 alias dush='du -sh'
@@ -33,7 +34,7 @@ alias k='kubectl'
 alias ls=logo-ls
 alias ncdu='ncdu --color dark -rr -x --exclude .git --exclude node_modules'
 alias r='source ~/.config/fish/config.fish '
-alias semgrep-go='semgrep -f ~/go/pkg/mod/github.com/dgryski/semgrep-go@v0.0.0-20201217215817-23677789decc/'
+alias semgrep-go='semgrep -f ~/go/pkg/mod/github.com/dgryski/semgrep-go@v0.0.0-20210819041707-9f189cc213ef/'
 alias ticket='echo -n "["(git rev-parse --abbrev-ref HEAD | sed -s "s/\(release\|hotfix\)\///g")"]"'
 alias tree='tree -C'
 alias vimrc='vim ~/.vimrc'
@@ -235,6 +236,14 @@ end
 function blog-notifier
     ssh $BLOG_NOTIFIER_HOST -i $BLOG_NOTIFIER_KEY_RSA \
         "cd ~/blog-notifier && ./blog_notifier.py $argv"
+end
+
+function rfgo
+    if test (count $argv) -eq 2
+        for file in (fd -e go -X grep -H "$argv[1]" '{}' | cut -d':' -f1)
+            sed -i 's:'"$argv[1]"':'"$argv[2]"':g' "$file"
+        end
+    end
 end
 
 test -f ~/.config/fish/pass.fish && source ~/.config/fish/pass.fish
