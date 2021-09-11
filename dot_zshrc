@@ -23,6 +23,7 @@ if [ -f "/$HOME/yandex-cloud/completion.zsh.inc" ]; then source "$HOME/yandex-cl
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
 
+alias allow='direnv allow'
 alias amend='git add . && git commit --amend'
 alias checkout='git checkout'
 alias clear_containers='docker rm $(docker ps --all --filter "ancestor=dev_migrate" -q)'
@@ -34,6 +35,7 @@ alias gpl='git pull'
 alias k=kubectl
 alias klogs='kubectl logs'
 alias kpo='kubectl get pods'
+alias last_commit='git log -1 --pretty=%B'
 alias master='git checkout master'
 alias merge='git merge'
 alias noproto='egrep -v ".proto"'
