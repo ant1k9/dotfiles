@@ -246,5 +246,13 @@ function rfgo
     end
 end
 
-test -f ~/.config/fish/pass.fish && source ~/.config/fish/pass.fish
-test -f ~/.config/fish/work.fish && source ~/.config/fish/work.fish
+function vginit
+    if test (count $argv) -eq 1
+        git clone "https://github.com/ant1k9/vagrant-basic-centos" "$argv[1]"
+        cd "$argv[1]"
+    end
+end
+
+test -f "$HOME/.config/fish/pass.fish" && source "$HOME/.config/fish/pass.fish"
+test -f "$HOME/.config/fish/work.fish" && source "$HOME/.config/fish/work.fish"
+test -s "$HOME/.config/envman/load.fish"; and source "$HOME/.config/envman/load.fish"
