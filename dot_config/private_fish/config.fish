@@ -222,7 +222,11 @@ function ungron
 end
 
 function chezmoi-re-add
-    for file in ~/.vimrc ~/.config/fish/config.fish ~/.tmux.conf ~/.vim/ftplugin
+    for file in ~/.vimrc \
+        ~/.config/fish/config.fish \
+        ~/.tmux.conf \
+        ~/.vim/ftplugin \
+        ~/.config/git/ignore
         chezmoi add -r $file
     end
 end
@@ -251,6 +255,31 @@ function vginit
         git clone "https://github.com/ant1k9/vagrant-basic-centos" "$argv[1]"
         cd "$argv[1]"
     end
+end
+
+function _tmux_session
+    if test (count $argv) -eq 2
+        if test -n "$TMUX"
+            tmux detach
+        end
+        if tmux has-session -t "$argv[2]"
+            tmux at -t "$argv[2]"
+        else
+            cd "$argv[1]/$argv[2]"
+            tmux new-session -d -s "$argv[2]"
+            tmux split-window -h -t "$argv[2]:1.0"
+            tmux split-window -t "$argv[2]:1.1"
+            tmux select-pane -t "$argv[2]:1.0"
+            for i in 0 1 2
+                tmux send-keys -t "$argv[2]:1.$i" clear Enter
+            end
+            tmux at -t "$argv[2]"
+        end
+    end
+end
+
+function tmux-session
+    _tmux_session "$HOME/ny2j/projects" "$argv[1]"
 end
 
 test -f "$HOME/.config/fish/pass.fish" && source "$HOME/.config/fish/pass.fish"

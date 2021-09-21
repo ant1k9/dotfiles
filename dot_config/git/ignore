@@ -2,6 +2,7 @@
 
 data
 tmp
+.vagrant
 
 .envrc
 .run
