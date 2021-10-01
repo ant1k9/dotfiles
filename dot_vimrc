@@ -59,19 +59,11 @@ Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 Plug 'rakr/vim-one'
 Plug 'roxma/nvim-yarp'
 Plug 'vuciv/vim-bujo'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'wellle/context.vim'
 Plug 'Yggdroot/indentLine'
 
 call plug#end()
-
-Bundle 'yuratomo/java-api-complete'
-Bundle 'yuratomo/java-api-javax'
-Bundle 'yuratomo/java-api-org'
-Bundle 'yuratomo/java-api-sun'
-Bundle 'yuratomo/java-api-servlet2.3'
-Bundle 'yuratomo/java-api-android'
-Bundle 'yuratomo/java-api-junit'
 
 " =============================================== "
 

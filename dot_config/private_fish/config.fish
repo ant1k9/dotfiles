@@ -6,6 +6,7 @@ set -e _OLD_VIRTUAL_PYTHONHOME
 set -e _OLD_VIRTUAL_PATH
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export AUTO_LAUNCHER_CONFIG_PATH="$HOME/.config/auto-launcher/config.toml"
 
 eval (direnv hook fish)
 
@@ -23,6 +24,7 @@ appendToPath "/home/antik/.npm-global/bin"
 appendToPath "/home/antik/.fly/bin"
 appendToPath "/var/lib/snapd/snap/bin"
 
+alias al='auto-launcher'
 alias allow='direnv allow'
 alias c='curl'
 alias cloc='cloc --exclude-list-file=.gitignore'
@@ -49,6 +51,7 @@ alias checkout='git checkout'
 alias gci='gitci'
 alias gd='git diff'
 alias gitci='git add .; git commit -a'
+alias gitopen='open (git remote get-url --push origin)'
 alias gp='git push'
 alias gpl='git pull'
 alias last_commit='git log -1 --pretty=%B'
@@ -280,6 +283,17 @@ end
 
 function tmux-session
     _tmux_session "$HOME/ny2j/projects" "$argv[1]"
+end
+
+function notify-on-finish
+    if test (count $argv) -eq 2
+        while pgrep "$argv[1]" > /dev/null
+            sleep 5
+        end
+        notify-send "$argv[2]"
+    else
+        echo -e "Usage:\n  notify-on-finish <command> <message>" | notify-send
+    end
 end
 
 test -f "$HOME/.config/fish/pass.fish" && source "$HOME/.config/fish/pass.fish"
