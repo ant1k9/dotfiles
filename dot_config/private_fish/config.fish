@@ -287,13 +287,26 @@ end
 
 function notify-on-finish
     if test (count $argv) -eq 2
-        while pgrep "$argv[1]" > /dev/null
+        while pgrep -f "$argv[1]" > /dev/null
             sleep 5
         end
         notify-send "$argv[2]"
     else
         echo -e "Usage:\n  notify-on-finish <command> <message>" | notify-send
     end
+end
+
+function drop-caches
+    sudo sync
+    sudo sh -c 'echo 1 > /proc/sys/vm/drop_caches'
+end
+
+function gitconfig-common
+    cp "$HOME/.gitconfig.common" "$HOME/.gitconfig"
+end
+
+function gitconfig-work
+    cp "$HOME/.gitconfig.work" "$HOME/.gitconfig"
 end
 
 test -f "$HOME/.config/fish/pass.fish" && source "$HOME/.config/fish/pass.fish"
