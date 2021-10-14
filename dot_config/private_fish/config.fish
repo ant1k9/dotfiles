@@ -16,12 +16,13 @@ function appendToPath
     set PATH $PATH "$argv[1]"
 end
 
-appendToPath "/home/antik/bin"
-appendToPath "/home/antik/go/bin"
-appendToPath "/home/antik/.cargo/bin"
-appendToPath "/home/antik/.local/bin"
-appendToPath "/home/antik/.npm-global/bin"
-appendToPath "/home/antik/.fly/bin"
+appendToPath "$HOME/bin"
+appendToPath "$HOME/go/bin"
+appendToPath "$HOME/.cargo/bin"
+appendToPath "$HOME/.local/bin"
+appendToPath "$HOME/.npm-global/bin"
+appendToPath "$HOME/.fly/bin"
+appendToPath "$HOME/.arkade/bin"
 appendToPath "/var/lib/snapd/snap/bin"
 
 alias al='auto-launcher'
@@ -29,6 +30,7 @@ alias allow='direnv allow'
 alias c='curl'
 alias cloc='cloc --exclude-list-file=.gitignore'
 alias dush='du -sh'
+alias emacs='emacs -nw'
 alias fishrc='vim ~/.config/fish/config.fish'
 alias gmt='go mod tidy'
 alias iconv1251='iconv -fcp1251'
@@ -46,10 +48,11 @@ alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
 # git aliases
-alias amend='git commit -a --amend'
+alias amend='git add .; git commit -a --amend'
 alias checkout='git checkout'
 alias gci='gitci'
 alias gd='git diff'
+alias gds='git-split-diff'
 alias gitci='git add .; git commit -a'
 alias gitopen='open (git remote get-url --push origin)'
 alias gp='git push'
@@ -97,7 +100,7 @@ function gsup
 end
 
 function add
-    echo "alias "$argv[1]"='"$argv[2]"'" >> /home/antik/.config/fish/config.fish
+    echo "alias "$argv[1]"='"$argv[2]"'" >> "$HOME/.config/fish/config.fish"
 end
 
 function duration
@@ -307,6 +310,10 @@ end
 
 function gitconfig-work
     cp "$HOME/.gitconfig.work" "$HOME/.gitconfig"
+end
+
+function git-split-diff
+    git diff $argv | git-split-diffs --color | less -RFX
 end
 
 test -f "$HOME/.config/fish/pass.fish" && source "$HOME/.config/fish/pass.fish"
