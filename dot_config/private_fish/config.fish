@@ -316,6 +316,12 @@ function git-split-diff
     git diff $argv | git-split-diffs --color | less -RFX
 end
 
+function html-to-pdf
+    set -l OUT_PDF "/tmp/"(cat /dev/random | tr -cd 'a-z0-9' | head -c 12)".pdf"
+    puppeteer print "$argv[1]" "$OUT_PDF"
+    open "$OUT_PDF"; rm "$OUT_PDF"
+end
+
 test -f "$HOME/.config/fish/pass.fish" && source "$HOME/.config/fish/pass.fish"
 test -f "$HOME/.config/fish/work.fish" && source "$HOME/.config/fish/work.fish"
 test -s "$HOME/.config/envman/load.fish"; and source "$HOME/.config/envman/load.fish"
