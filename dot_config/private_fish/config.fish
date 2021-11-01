@@ -58,7 +58,10 @@ alias gitopen='open (git remote get-url --push origin)'
 alias gp='git push'
 alias gpl='git pull'
 alias last_commit='git log -1 --pretty=%B'
+alias main='git checkout main'
 alias master='git checkout master'
+alias rbs='git rebase'
+alias rbsc='rbs --continue'
 alias st='git status'
 
 # Vagrant aliases
@@ -319,7 +322,13 @@ end
 function html-to-pdf
     set -l OUT_PDF "/tmp/"(cat /dev/random | tr -cd 'a-z0-9' | head -c 12)".pdf"
     puppeteer print "$argv[1]" "$OUT_PDF"
-    open "$OUT_PDF"; rm "$OUT_PDF"
+    open "$OUT_PDF"
+end
+
+function docable
+    cd "$HOME/ny2j/projects/docable-notebooks"
+    open "http://localhost:3000" &
+    yarn dev
 end
 
 test -f "$HOME/.config/fish/pass.fish" && source "$HOME/.config/fish/pass.fish"

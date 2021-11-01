@@ -12,6 +12,7 @@ call vundle#begin()
 
 Plugin 'buoto/gotests-vim'
 Plugin 'cespare/vim-toml'
+Plugin 'dag/vim-fish'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'easymotion/vim-easymotion'
@@ -234,6 +235,7 @@ nmap gd <Plug>(coc-definition)
 nmap gy <Plug>(coc-type-definition)
 nmap gi <Plug>(coc-implementation)
 nmap gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
 
 nnoremap loc A # [LOCAL]<ESC>
 nnoremap stg A # [STG]<ESC>
