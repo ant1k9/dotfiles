@@ -32,6 +32,7 @@ alias cloc='cloc --exclude-list-file=.gitignore'
 alias dush='du -sh'
 alias emacs='emacs -nw'
 alias fishrc='vim ~/.config/fish/config.fish'
+alias gmi='go-mod-init'
 alias gmt='go mod tidy'
 alias iconv1251='iconv -fcp1251'
 alias k='kubectl'
@@ -40,6 +41,7 @@ alias ncdu='ncdu --color dark -rr -x --exclude .git --exclude node_modules'
 alias r='source ~/.config/fish/config.fish '
 alias semgrep-go='semgrep -f ~/go/pkg/mod/github.com/dgryski/semgrep-go@v0.0.0-20210819041707-9f189cc213ef/'
 alias ticket='echo -n "["(git rev-parse --abbrev-ref HEAD | sed -s "s/\(release\|hotfix\)\///g")"]"'
+alias tldr='tldr -p'
 alias tree='tree -C'
 alias vimrc='vim ~/.vimrc'
 
@@ -52,11 +54,12 @@ alias amend='git add .; git commit -a --amend'
 alias checkout='git checkout'
 alias gci='gitci'
 alias gd='git diff'
-alias gds='git-split-diff'
+alias gds='_git-split-diff'
 alias gitci='git add .; git commit -a'
 alias gitopen='open (git remote get-url --push origin)'
 alias gp='git push'
 alias gpl='git pull'
+alias heroku-push-main='git push heroku main'
 alias last_commit='git log -1 --pretty=%B'
 alias main='git checkout main'
 alias master='git checkout master'
@@ -102,10 +105,6 @@ function gsup
     git branch --set-upstream-to "origin/$branch" "$branch"
 end
 
-function add
-    echo "alias "$argv[1]"='"$argv[2]"'" >> "$HOME/.config/fish/config.fish"
-end
-
 function duration
     ffmpeg -i "$argv[1]" 2>&1 | grep Duration
 end
@@ -115,7 +114,7 @@ function mkcd
     cd "$argv[1]"
 end
 
-function add_db
+function add-db
     set -l db_name "$argv[1]"
     set -l db_user "$db_name-user"
     set -l db_pass "$db_user-password"
@@ -127,7 +126,7 @@ function add_db
     goose -dir ./migrations postgres "host=127.0.0.1 port=5432 user=$db_user dbname=$db_name password=$db_pass sslmode=disable" up
 end
 
-function migrate_db
+function migrate-db
     set -l db_name "$argv[1]"
     set -l db_user "$db_name-user"
     set -l db_pass "$db_user-password"
@@ -139,7 +138,7 @@ function migrate_db
     goose -dir ./migrations postgres "host=127.0.0.1 port=5432 user=$db_user dbname=$db_name password=$db_pass sslmode=disable" "$action"
 end
 
-function local_db
+function local-db
     set -l db_name (basename (git rev-parse --show-toplevel))
     pgcli -Upostgres "$db_name"
 end
@@ -274,7 +273,7 @@ function _tmux_session
         if tmux has-session -t "$argv[2]"
             tmux at -t "$argv[2]"
         else
-            cd "$argv[1]/$argv[2]"
+            cd "$argv[1]"
             tmux new-session -d -s "$argv[2]"
             tmux split-window -h -t "$argv[2]:1.0"
             tmux split-window -t "$argv[2]:1.1"
@@ -288,7 +287,11 @@ function _tmux_session
 end
 
 function tmux-session
-    _tmux_session "$HOME/ny2j/projects" "$argv[1]"
+    _tmux_session "$HOME/ny2j/projects/$argv[1]" "$argv[1]"
+end
+
+function ts
+    _tmux_session "$PWD" (basename $PWD)
 end
 
 function notify-on-finish
@@ -315,7 +318,7 @@ function gitconfig-work
     cp "$HOME/.gitconfig.work" "$HOME/.gitconfig"
 end
 
-function git-split-diff
+function _git-split-diff
     git diff $argv | git-split-diffs --color | less -RFX
 end
 
@@ -329,6 +332,26 @@ function docable
     cd "$HOME/ny2j/projects/docable-notebooks"
     open "http://localhost:3000" &
     yarn dev
+end
+
+function poli
+    cd "$HOME/Programms/poli-0.12.1"
+    ./start.sh
+end
+
+function go-mod-init
+    if test (count $argv) -eq 1
+        mkcd "$argv[1]"
+        go mod init "$argv[1]"
+        gmt
+        vim main.go
+    end
+end
+
+function fish-functions
+    grep -Eo "^function (.*)" "$HOME/.config/fish/config.fish" \
+        | choose 1 -f ' ' | egrep -v '^_' | sort \
+        | xargs -I'{}' printf "\033[0;32m{}\033[0m\n"
 end
 
 test -f "$HOME/.config/fish/pass.fish" && source "$HOME/.config/fish/pass.fish"
