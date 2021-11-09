@@ -11,19 +11,19 @@ export AUTO_LAUNCHER_CONFIG_PATH="$HOME/.config/auto-launcher/config.toml"
 eval (direnv hook fish)
 
 # Set PATH properly
-function appendToPath
+function apppend-to-path
     set PATH (string replace ":$argv[1]" "" "$PATH")
     set PATH $PATH "$argv[1]"
 end
 
-appendToPath "$HOME/bin"
-appendToPath "$HOME/go/bin"
-appendToPath "$HOME/.cargo/bin"
-appendToPath "$HOME/.local/bin"
-appendToPath "$HOME/.npm-global/bin"
-appendToPath "$HOME/.fly/bin"
-appendToPath "$HOME/.arkade/bin"
-appendToPath "/var/lib/snapd/snap/bin"
+apppend-to-path "$HOME/bin"
+apppend-to-path "$HOME/go/bin"
+apppend-to-path "$HOME/.cargo/bin"
+apppend-to-path "$HOME/.local/bin"
+apppend-to-path "$HOME/.npm-global/bin"
+apppend-to-path "$HOME/.fly/bin"
+apppend-to-path "$HOME/.arkade/bin"
+apppend-to-path "/var/lib/snapd/snap/bin"
 
 alias al='auto-launcher'
 alias allow='direnv allow'
@@ -34,6 +34,7 @@ alias emacs='emacs -nw'
 alias fishrc='vim ~/.config/fish/config.fish'
 alias gmi='go-mod-init'
 alias gmt='go mod tidy'
+alias hpm='git push heroku main'
 alias iconv1251='iconv -fcp1251'
 alias k='kubectl'
 alias ls=logo-ls
@@ -59,12 +60,13 @@ alias gitci='git add .; git commit -a'
 alias gitopen='open (git remote get-url --push origin)'
 alias gp='git push'
 alias gpl='git pull'
-alias heroku-push-main='git push heroku main'
+alias grbs='git rebase'
+alias grbsc='grbs --continue'
+alias gmr='git merge'
+alias gmrc='gmr --continue'
 alias last_commit='git log -1 --pretty=%B'
 alias main='git checkout main'
 alias master='git checkout master'
-alias rbs='git rebase'
-alias rbsc='rbs --continue'
 alias st='git status'
 
 # Vagrant aliases
@@ -84,10 +86,6 @@ alias makemigrations='./manage.py makemigrations'
 alias migrate='./manage.py migrate'
 alias mshell='./manage.py shell'
 
-function newbranch
-    git push --set-upstream origin (git rev-parse --abbrev-ref HEAD)
-end
-
 function originpush
     git push origin (git rev-parse --abbrev-ref HEAD)
 end
@@ -103,10 +101,6 @@ end
 function gsup
     set -l branch (git branch --show-current)
     git branch --set-upstream-to "origin/$branch" "$branch"
-end
-
-function duration
-    ffmpeg -i "$argv[1]" 2>&1 | grep Duration
 end
 
 function mkcd
@@ -265,13 +259,18 @@ function vginit
     end
 end
 
+function _tmux_attach
+    if test -n "$TMUX"
+        tmux switch -t "$argv[1]"
+    else
+        tmux attach -t "$arfv[1]"
+    end
+end
+
 function _tmux_session
     if test (count $argv) -eq 2
-        if test -n "$TMUX"
-            tmux detach
-        end
         if tmux has-session -t "$argv[2]"
-            tmux at -t "$argv[2]"
+            _tmux_attach "$argv[2]"
         else
             cd "$argv[1]"
             tmux new-session -d -s "$argv[2]"
@@ -281,7 +280,7 @@ function _tmux_session
             for i in 0 1 2
                 tmux send-keys -t "$argv[2]:1.$i" clear Enter
             end
-            tmux at -t "$argv[2]"
+            _tmux_attach "$argv[2]"
         end
     end
 end
