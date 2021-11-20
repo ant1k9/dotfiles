@@ -20,8 +20,6 @@ apppend-to-path "$HOME/bin"
 apppend-to-path "$HOME/go/bin"
 apppend-to-path "$HOME/.cargo/bin"
 apppend-to-path "$HOME/.local/bin"
-apppend-to-path "$HOME/.npm-global/bin"
-apppend-to-path "$HOME/.fly/bin"
 apppend-to-path "$HOME/.arkade/bin"
 apppend-to-path "/var/lib/snapd/snap/bin"
 
@@ -52,7 +50,7 @@ alias pbpaste='xclip -selection clipboard -o'
 
 # git aliases
 alias amend='git add .; git commit -a --amend'
-alias checkout='git checkout'
+alias chk='git checkout'
 alias gci='gitci'
 alias gd='git diff'
 alias gds='_git-split-diff'
@@ -353,6 +351,10 @@ function fish-functions
         | xargs -I'{}' printf "\033[0;32m{}\033[0m\n"
 end
 
-test -f "$HOME/.config/fish/pass.fish" && source "$HOME/.config/fish/pass.fish"
-test -f "$HOME/.config/fish/work.fish" && source "$HOME/.config/fish/work.fish"
+test -s "$HOME/.config/fish/pass.fish"; and source "$HOME/.config/fish/pass.fish"
+test -s "$HOME/.config/fish/work.fish"; and source "$HOME/.config/fish/work.fish"
 test -s "$HOME/.config/envman/load.fish"; and source "$HOME/.config/envman/load.fish"
+
+if test -n (which starship 2>/dev/null)
+    starship init fish | source
+end

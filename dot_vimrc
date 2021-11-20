@@ -103,6 +103,9 @@ au CursorHold * checktime
 set foldmethod=indent
 set viminfo='1000,<100,s10,h
 
+set splitbelow
+set splitright
+
 " colorscheme Chasing_Logic
 " colorscheme woju
 " colorscheme blackboard
