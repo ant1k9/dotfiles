@@ -270,7 +270,9 @@ function _tmux_session
         if tmux has-session -t "$argv[2]"
             _tmux_attach "$argv[2]"
         else
+            set -l CURRENT_DIR "$PWD"
             cd "$argv[1]"
+
             tmux new-session -d -s "$argv[2]"
             tmux split-window -h -t "$argv[2]:1.0"
             tmux split-window -t "$argv[2]:1.1"
@@ -278,6 +280,8 @@ function _tmux_session
             for i in 0 1 2
                 tmux send-keys -t "$argv[2]:1.$i" clear Enter
             end
+
+            cd "$CURRENT_DIR"
             _tmux_attach "$argv[2]"
         end
     end
@@ -349,6 +353,10 @@ function fish-functions
     grep -Eo "^function (.*)" "$HOME/.config/fish/config.fish" \
         | choose 1 -f ' ' | egrep -v '^_' | sort \
         | xargs -I'{}' printf "\033[0;32m{}\033[0m\n"
+end
+
+function vifd
+    vim -p (fd "$argv[1]")
 end
 
 test -s "$HOME/.config/fish/pass.fish"; and source "$HOME/.config/fish/pass.fish"

@@ -24,6 +24,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'martingms/vipsql'
 Plugin 'mattn/emmet-vim'
 Plugin 'neco-ghc'
 Plugin 'posva/vim-vue'
@@ -184,6 +185,9 @@ autocmd FileType scss setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 autocmd FileType vue setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 autocmd FileType fizz setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 autocmd FileType haskell setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+autocmd FileType gitcommit setlocal spell complete+=kspell
+autocmd FileType markdown setlocal spell complete+=kspell
+autocmd BufRead,BufNewFile /tmp/.* setlocal spell complete+=kspell
 
 augroup vagrant
     au!
