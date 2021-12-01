@@ -1,0 +1,1 @@
+nmap fmt :ClangFormat<CR>

@@ -30,6 +30,7 @@ Plugin 'neco-ghc'
 Plugin 'posva/vim-vue'
 Plugin 'puremourning/vimspector'
 Plugin 'racer-rust/vim-racer'
+Plugin 'rhysd/vim-clang-format'
 Plugin 'rust-lang/rust.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Shougo/vimproc.vim'
@@ -84,6 +85,7 @@ set expandtab ts=4 sw=4 ai
 set number
 set smartindent
 set autoindent
+set nocindent
 
 set shiftround
 set smarttab
@@ -136,7 +138,6 @@ let g:go_jump_to_error = 0
 let g:go_fmt_command = "goimports"
 
 " automatically highlight variable your cursor is on
-" let g:go_auto_sameids = 0
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
@@ -194,7 +195,7 @@ augroup vagrant
     au BufRead,BufNewFile Vagrantfile set filetype=ruby
 augroup END
 
-au BufNewFile,BufRead *.java    setl omnifunc=javaapi#complete
+au BufNewFile,BufRead *.java setl omnifunc=javaapi#complete
 
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
@@ -212,19 +213,21 @@ set hlsearch
 
 " mapleader to defis
 let mapleader = "-"
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>qw :wq<cr>
+nnoremap <leader>sp :split<cr>
+nnoremap <leader>vsp :vsplit<cr>
 nnoremap l0 :let @/=""<cr>
 inoremap jk <esc>:w<cr>
+
+noremap <silent> <leader>o :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
+noremap <silent> <leader>] :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')<CR>
 
 " Move line up and down
 nnoremap <c-j> ddp
 nnoremap <c-k> ddkP
 
-nnoremap <silent> man :call <SID>man_page()<CR>
-
 " Useful shortcuts
+nnoremap <leader>j j
+nnoremap <leader>k k
 nnoremap j zzj
 nnoremap k zzk
 nnoremap <leader>s :%s/ \+$//g<CR>
@@ -243,6 +246,18 @@ nmap gy <Plug>(coc-type-definition)
 nmap gi <Plug>(coc-implementation)
 nmap gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
+
+nmap tf :tabfirst<CR>
+nmap tl :tablast<CR>
+nmap tt1 :1tabnext<CR>
+nmap tt2 :2tabnext<CR>
+nmap tt3 :3tabnext<CR>
+nmap tt4 :4tabnext<CR>
+nmap tt5 :5tabnext<CR>
+nmap tt6 :6tabnext<CR>
+nmap tt7 :7tabnext<CR>
+nmap tt8 :8tabnext<CR>
+nmap tt9 :9tabnext<CR>
 
 nnoremap loc A # [LOCAL]<ESC>
 nnoremap stg A # [STG]<ESC>

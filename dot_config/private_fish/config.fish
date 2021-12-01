@@ -39,9 +39,11 @@ alias ls=logo-ls
 alias ncdu='ncdu --color dark -rr -x --exclude .git --exclude node_modules'
 alias r='source ~/.config/fish/config.fish '
 alias semgrep-go='semgrep -f ~/go/pkg/mod/github.com/dgryski/semgrep-go@v0.0.0-20210819041707-9f189cc213ef/'
+alias teng='trans -t eng -s ru'
 alias ticket='echo -n "["(git rev-parse --abbrev-ref HEAD | sed -s "s/\(release\|hotfix\)\///g")"]"'
 alias tldr='tldr -p'
 alias tree='tree -C'
+alias tru='trans -t ru'
 alias vimrc='vim ~/.vimrc'
 
 # Helpers
@@ -330,14 +332,28 @@ function html-to-pdf
 end
 
 function docable
-    cd "$HOME/ny2j/projects/docable-notebooks"
-    open "http://localhost:3000" &
-    yarn dev
+    function _docable
+        cd "$HOME/ny2j/projects/docable-notebooks"
+        open "http://localhost:3000" &
+        yarn dev
+    end
+    _restore_dir _docable
 end
 
 function poli
-    cd "$HOME/Programms/poli-0.12.1"
-    ./start.sh
+    function _poli
+        cd "$HOME/Programms/poli-0.12.1"
+        ./start.sh
+    end
+    _restore_dir _poli
+end
+
+function _restore_dir
+    if test (count $argv) -eq 1
+        set -l CURRENT_DIR "$PWD"
+        $argv[1]
+        cd $CURRENT_DIR
+    end
 end
 
 function go-mod-init
