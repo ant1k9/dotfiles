@@ -42,6 +42,7 @@ alias semgrep-go='semgrep -f ~/go/pkg/mod/github.com/dgryski/semgrep-go@v0.0.0-2
 alias teng='trans -t eng -s ru'
 alias ticket='echo -n "["(git rev-parse --abbrev-ref HEAD | sed -s "s/\(release\|hotfix\)\///g")"]"'
 alias tldr='tldr -p'
+alias trc='vim ~/.tmux.conf'
 alias tree='tree -C'
 alias tru='trans -t ru'
 alias vimrc='vim ~/.vimrc'
@@ -249,13 +250,6 @@ function rfgo
         for file in (fd -e go -X grep -H "$argv[1]" '{}' | cut -d':' -f1)
             sed -i 's:'"$argv[1]"':'"$argv[2]"':g' "$file"
         end
-    end
-end
-
-function vginit
-    if test (count $argv) -eq 1
-        git clone "https://github.com/ant1k9/vagrant-basic-centos" "$argv[1]"
-        cd "$argv[1]"
     end
 end
 
