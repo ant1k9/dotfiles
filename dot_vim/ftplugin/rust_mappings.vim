@@ -1,1 +1,1 @@
-nmap fmt :RustFmt<CR>
+nmap =G :RustFmt<CR>

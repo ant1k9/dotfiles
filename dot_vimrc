@@ -197,9 +197,9 @@ augroup END
 
 au BufNewFile,BufRead *.java setl omnifunc=javaapi#complete
 
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
+silent! python3 from powerline.vim import setup as powerline_setup
+silent! python3 powerline_setup()
+silent! python3 del powerline_setup
 
 " Highlight Extra Whitespaces
 :highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen

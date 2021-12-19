@@ -16,12 +16,16 @@ function apppend-to-path
     set PATH $PATH "$argv[1]"
 end
 
-apppend-to-path "$HOME/bin"
-apppend-to-path "$HOME/go/bin"
-apppend-to-path "$HOME/.cargo/bin"
-apppend-to-path "$HOME/.local/bin"
-apppend-to-path "$HOME/.arkade/bin"
-apppend-to-path "/var/lib/snapd/snap/bin"
+for dir in \
+    "$HOME/bin" \
+    "$HOME/go/bin" \
+    "$HOME/.cargo/bin" \
+    "$HOME/.local/bin" \
+    "$HOME/.arkade/bin" \
+    "/home/linuxbrew/.linuxbrew/bin/fish" \
+    "/var/lib/snapd/snap/bin"
+    apppend-to-path "$dir"
+end
 
 alias al='auto-launcher'
 alias allow='direnv allow'
@@ -229,7 +233,8 @@ function chezmoi-re-add
         ~/.config/fish/config.fish \
         ~/.tmux.conf \
         ~/.vim/ftplugin \
-        ~/.config/git/ignore
+        ~/.config/git/ignore \
+        ~/.config/starship.toml
         chezmoi add -r $file
     end
 end

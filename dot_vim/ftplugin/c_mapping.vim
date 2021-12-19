@@ -1,1 +1,1 @@
-nmap fmt :ClangFormat<CR>
+nmap =G :ClangFormat<CR>
