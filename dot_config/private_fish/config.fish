@@ -10,8 +10,13 @@ export AUTO_LAUNCHER_CONFIG_PATH="$HOME/.config/auto-launcher/config.toml"
 
 eval (direnv hook fish)
 
+# MacOS configs
+if test uname = "Darwin"
+    bind \cv edit_command_buffer
+end
+
 # Set PATH properly
-function apppend-to-path
+function append-to-path
     set PATH (string replace ":$argv[1]" "" "$PATH")
     set PATH $PATH "$argv[1]"
 end
@@ -24,13 +29,14 @@ for dir in \
     "$HOME/.arkade/bin" \
     "/home/linuxbrew/.linuxbrew/bin/fish" \
     "/var/lib/snapd/snap/bin"
-    apppend-to-path "$dir"
+    append-to-path "$dir"
 end
 
 alias al='auto-launcher'
 alias allow='direnv allow'
 alias c='curl'
 alias cloc='cloc --exclude-list-file=.gitignore'
+alias commitlint-head='commitlint --from=HEAD~1'
 alias dush='du -sh'
 alias emacs='emacs -nw'
 alias fishrc='vim ~/.config/fish/config.fish'
@@ -52,15 +58,19 @@ alias tru='trans -t ru'
 alias vimrc='vim ~/.vimrc'
 
 # Helpers
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+if test uname != "Darwin"
+    alias pbcopy='xclip -selection clipboard'
+    alias pbpaste='xclip -selection clipboard -o'
+end
 
 # git aliases
 alias amend='git add .; git commit -a --amend'
 alias chk='git checkout'
+alias gbr='git branch'
 alias gci='gitci'
 alias gd='git diff'
 alias gds='_git-split-diff'
+alias gdt='GIT_EXTERNAL_DIFF=difft gd'
 alias gitci='git add .; git commit -a'
 alias gitopen='open (git remote get-url --push origin)'
 alias gp='git push'

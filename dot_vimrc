@@ -38,6 +38,8 @@ Plugin 'shougo/vimshell.vim'
 Plugin 'simnalamburt/vim-mundo'
 Plugin 'SirVer/ultisnips'
 Plugin 'tomtom/tlib_vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 Plugin 'udalov/kotlin-vim'
 Plugin 'VundleVim/Vundle.vim'
 
@@ -62,7 +64,6 @@ Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 Plug 'rakr/vim-one'
 Plug 'roxma/nvim-yarp'
 Plug 'vuciv/vim-bujo'
-" Plug 'w0rp/ale'
 Plug 'wellle/context.vim'
 Plug 'Yggdroot/indentLine'
 
@@ -86,6 +87,7 @@ set number
 set smartindent
 set autoindent
 set nocindent
+set backspace=indent,eol,start
 
 set shiftround
 set smarttab
@@ -235,7 +237,7 @@ nnoremap <leader>, :s/, /,\r/<CR>
 nnoremap <leader>0 :s/)/,\r)/<CR>
 nnoremap <leader>9 :s/(/(\r/<CR>
 nnoremap <leader>q :colorscheme random<CR>
-nnoremap tn :tabnew<CR>
+nnoremap <leader>p :set paste!<CR>
 
 map <Leader><Leader>l <Plug>(easymotion-bd-l)
 map <Leader><Leader>w <Plug>(easymotion-bd-w)
@@ -247,6 +249,7 @@ nmap gi <Plug>(coc-implementation)
 nmap gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 
+nmap tn :tabnew<CR>
 nmap tf :tabfirst<CR>
 nmap tl :tablast<CR>
 nmap tt1 :1tabnext<CR>
@@ -258,10 +261,6 @@ nmap tt6 :6tabnext<CR>
 nmap tt7 :7tabnext<CR>
 nmap tt8 :8tabnext<CR>
 nmap tt9 :9tabnext<CR>
-
-nnoremap loc A # [LOCAL]<ESC>
-nnoremap stg A # [STG]<ESC>
-nnoremap prod A # [PROD]<ESC>
 
 command! OpenInGitlab call <SID>openInGitlab()
 
