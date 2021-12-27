@@ -238,6 +238,9 @@ nnoremap <leader>0 :s/)/,\r)/<CR>
 nnoremap <leader>9 :s/(/(\r/<CR>
 nnoremap <leader>q :colorscheme random<CR>
 nnoremap <leader>p :set paste!<CR>
+nnoremap <leader>x o1. [ ] 
+nnoremap <leader>d ^f[ rx
+nnoremap <leader>u ^f[ r 
 
 map <Leader><Leader>l <Plug>(easymotion-bd-l)
 map <Leader><Leader>w <Plug>(easymotion-bd-w)

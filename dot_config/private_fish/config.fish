@@ -34,6 +34,7 @@ end
 
 alias al='auto-launcher'
 alias allow='direnv allow'
+alias box='formatter --header "┏━┓" --prefix "┃ " --suffix " ┃" --footer "┗━┛" --width 90'
 alias c='curl'
 alias cloc='cloc --exclude-list-file=.gitignore'
 alias commitlint-head='commitlint --from=HEAD~1'
