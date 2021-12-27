@@ -11,7 +11,7 @@ export AUTO_LAUNCHER_CONFIG_PATH="$HOME/.config/auto-launcher/config.toml"
 eval (direnv hook fish)
 
 # MacOS configs
-if test uname = "Darwin"
+if test (uname) = "Darwin"
     bind \cv edit_command_buffer
 end
 
@@ -59,7 +59,7 @@ alias tru='trans -t ru'
 alias vimrc='vim ~/.vimrc'
 
 # Helpers
-if test uname != "Darwin"
+if test (uname) != "Darwin"
     alias pbcopy='xclip -selection clipboard'
     alias pbpaste='xclip -selection clipboard -o'
 end
