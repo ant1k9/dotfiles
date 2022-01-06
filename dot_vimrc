@@ -19,6 +19,7 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plugin 'flazz/vim-colorschemes'
 Plugin 'frazrepo/vim-rainbow'
+Plugin 'hashivim/vim-terraform'
 Plugin 'honza/vim-snippets'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'kien/rainbow_parentheses.vim'
@@ -264,15 +265,27 @@ nmap tt6 :6tabnext<CR>
 nmap tt7 :7tabnext<CR>
 nmap tt8 :8tabnext<CR>
 nmap tt9 :9tabnext<CR>
+nmap tm :tabmove 
 
 command! OpenInGitlab call <SID>openInGitlab()
+command! OpenInGithub call <SID>openInGithub()
 
-function! s:openInGitlab()
+function OpenRepoInBrowser(pattern)
+    let pattern = a:pattern
     let repo = system("git remote get-url --push origin | tr -d '\n'")
+    let branch = system("git rev-parse --abbrev-ref HEAD | tr -d '\n'")
     let filename = expand("%:.")
     let lineNumber = line(".")
-    let sysCommand = printf("!open '%s/-/blob/master/%s\\#L%d'", repo, filename, lineNumber)
+    let sysCommand = printf(pattern, repo, branch, filename, lineNumber)
     exec sysCommand
+endfunction
+
+function! s:openInGithub()
+    call OpenRepoInBrowser("!open '%s/blob/%s/%s\\#L%d'")
+endfunction
+
+function! s:openInGitlab()
+    call OpenRepoInBrowser("!open '%s/-/blob/%s/%s\\#L%d'")
 endfunction
 
 " include extra configs

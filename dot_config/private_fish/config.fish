@@ -38,6 +38,7 @@ alias box='formatter --header "┏━┓" --prefix "┃ " --suffix " ┃" --foot
 alias c='curl'
 alias cloc='cloc --exclude-list-file=.gitignore'
 alias commitlint-head='commitlint --from=HEAD~1'
+alias refresh-dropbox-token='gotask -t $HOME/.config/task/Taskfile.yml update-token'
 alias dush='du -sh'
 alias emacs='emacs -nw'
 alias fishrc='vim ~/.config/fish/config.fish'
