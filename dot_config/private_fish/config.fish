@@ -42,6 +42,7 @@ alias refresh-dropbox-token='gotask -t $HOME/.config/task/Taskfile.yml update-to
 alias dush='du -sh'
 alias emacs='emacs -nw'
 alias fishrc='vim ~/.config/fish/config.fish'
+alias grammarly='firefox https://app.grammarly.com/docs/new'
 alias gmi='go-mod-init'
 alias gmt='go mod tidy'
 alias hpm='git push heroku main'
@@ -262,11 +263,17 @@ function blog-notifier
         "cd ~/blog-notifier && ./blog_notifier.py $argv"
 end
 
+function rf
+    if test (count $argv) -eq 3
+        for file in (fd -e "$argv[1]" -X grep -H "$argv[2]" '{}' | cut -d':' -f1)
+            sed -i".bak" 's!'"$argv[2]"'!'"$argv[3]"'!g' "$file"
+        end
+    end
+end
+
 function rfgo
     if test (count $argv) -eq 2
-        for file in (fd -e go -X grep -H "$argv[1]" '{}' | cut -d':' -f1)
-            sed -i 's:'"$argv[1]"':'"$argv[2]"':g' "$file"
-        end
+        rf "go" "$argv[1]" "$argv[2]"
     end
 end
 
