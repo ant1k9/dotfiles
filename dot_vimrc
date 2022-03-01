@@ -242,6 +242,8 @@ nnoremap <leader>p :set paste!<CR>
 nnoremap <leader>x o1. [ ] 
 nnoremap <leader>d ^f[ rx
 nnoremap <leader>u ^f[ r 
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>a :Ag<CR>
 
 map <Leader><Leader>l <Plug>(easymotion-bd-l)
 map <Leader><Leader>w <Plug>(easymotion-bd-w)

@@ -42,7 +42,6 @@ alias refresh-dropbox-token='gotask -t $HOME/.config/task/Taskfile.yml update-to
 alias dush='du -sh'
 alias emacs='emacs -nw'
 alias fishrc='vim ~/.config/fish/config.fish'
-alias grammarly='firefox https://app.grammarly.com/docs/new'
 alias gmi='go-mod-init'
 alias gmt='go mod tidy'
 alias hpm='git push heroku main'
@@ -52,12 +51,10 @@ alias ls=logo-ls
 alias ncdu='ncdu --color dark -rr -x --exclude .git --exclude node_modules'
 alias r='source ~/.config/fish/config.fish '
 alias semgrep-go='semgrep -f ~/go/pkg/mod/github.com/dgryski/semgrep-go@v0.0.0-20210819041707-9f189cc213ef/'
-alias teng='trans -t eng -s ru'
 alias ticket='echo -n "["(git rev-parse --abbrev-ref HEAD | sed -s "s/\(release\|hotfix\)\///g")"]"'
 alias tldr='tldr -p'
 alias trc='vim ~/.tmux.conf'
 alias tree='tree -C'
-alias tru='trans -t ru'
 alias vimrc='vim ~/.vimrc'
 
 # Helpers
@@ -387,6 +384,19 @@ function fish-functions
     grep -Eo "^function (.*)" "$HOME/.config/fish/config.fish" \
         | choose 1 -f ' ' | egrep -v '^_' | sort \
         | xargs -I'{}' printf "\033[0;32m{}\033[0m\n"
+end
+
+
+function teng
+    trans -t eng -s ru "$argv"
+end
+
+function tru
+    trans -t ru "$argv"
+end
+
+function grammarly
+    firefox https://app.grammarly.com/docs/new &
 end
 
 function vifd
