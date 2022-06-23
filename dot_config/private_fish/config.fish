@@ -56,6 +56,7 @@ alias tldr='tldr -p'
 alias trc='vim ~/.tmux.conf'
 alias tree='tree -C'
 alias vimrc='vim ~/.vimrc'
+alias viddy-agile='viddy "agile today show"'
 
 # Helpers
 if test (uname) != "Darwin"
@@ -166,6 +167,10 @@ function memtop
         | sort -nk2 \
         | tail \
         | column -t
+end
+
+function origin
+    open (git remote get-url --push origin | tr -d '\n')
 end
 
 function tomp3
