@@ -249,6 +249,7 @@ function chezmoi-re-add
         ~/.tmux.conf \
         ~/.vim/ftplugin \
         ~/.config/git/ignore \
+        ~/.config/tmuxinator \
         ~/.config/starship.toml
         chezmoi add -r $file
     end
