@@ -6,3 +6,5 @@ nmap gf :GoFillStruct<CR>
 nmap gif :GoIfErr<CR>
 
 nmap td o// TODO: 
+
+let g:go_addtags_transform = 'camelcase'
