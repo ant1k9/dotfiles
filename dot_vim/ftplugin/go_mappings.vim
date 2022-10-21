@@ -4,6 +4,7 @@ nmap gc :GoCallers<CR>
 nmap gd :GoDef<CR>
 nmap gf :GoFillStruct<CR>
 nmap gif :GoIfErr<CR>
+nmap gs :GoDeclsDir<CR>
 
 nmap td o// TODO: 
 

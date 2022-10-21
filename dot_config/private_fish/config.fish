@@ -10,6 +10,8 @@ export AUTO_LAUNCHER_CONFIG_PATH="$HOME/.config/auto-launcher/config.toml"
 
 eval (direnv hook fish)
 
+zoxide init fish | source
+
 # MacOS configs
 if test (uname) = "Darwin"
     bind \cv edit_command_buffer
@@ -27,6 +29,7 @@ for dir in \
     "$HOME/.cargo/bin" \
     "$HOME/.local/bin" \
     "$HOME/.arkade/bin" \
+    "$HOME/.npm/bin" \
     "/home/linuxbrew/.linuxbrew/bin/fish" \
     "/var/lib/snapd/snap/bin"
     append-to-path "$dir"
@@ -364,7 +367,7 @@ end
 
 function poli
     function _poli
-        cd "$HOME/Programms/poli-0.12.1"
+        cd "$HOME/Programs/poli"
         ./start.sh
     end
     _restore_dir _poli
