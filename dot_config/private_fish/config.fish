@@ -52,15 +52,16 @@ alias hpm='git push heroku main'
 alias iconv1251='iconv -fcp1251'
 alias k='kubectl'
 alias ls=logo-ls
+alias mkdir='mkdir -p'
 alias ncdu='ncdu --color dark -rr -x --exclude .git --exclude node_modules'
 alias r='source ~/.config/fish/config.fish '
 alias semgrep-go='semgrep -f ~/go/pkg/mod/github.com/dgryski/semgrep-go@v0.0.0-20210819041707-9f189cc213ef/'
+alias shmoji='shmoji fzf'
 alias ticket='echo -n "["(git rev-parse --abbrev-ref HEAD | sed -s "s/\(release\|hotfix\)\///g")"]"'
 alias tldr='tldr -p'
 alias trc='vim ~/.tmux.conf'
 alias tree='tree -C'
 alias vimrc='vim ~/.vimrc'
-alias viddy-agile='viddy "agile today show"'
 
 # Helpers
 if test (uname) != "Darwin"
@@ -208,8 +209,8 @@ end
 
 function ydlmp3
     if test (count $argv) -gt 0
-        set -l filename (youtube-dl "$argv[1]" --get-filename)
-        youtube-dl "$argv[1]"
+        set -l filename (youtube-dl "$argv[1]" --get-filename | sed 's/webm/opus/g')
+        youtube-dl -x "$argv[1]"
         tomp3 "$filename" && setmid3v2from "$filename"
     end
 end
@@ -408,6 +409,15 @@ end
 function grammarly
     firefox https://app.grammarly.com/docs/new &
 end
+
+function viddy-agile
+    if test (count $argv) -eq 1
+        viddy "agile $argv[1] show"
+    else
+        viddy "agile today show"
+    end
+end
+
 
 function vifd
     vim -p (fd "$argv[1]")

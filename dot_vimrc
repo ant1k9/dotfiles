@@ -34,6 +34,7 @@ Plugin 'racer-rust/vim-racer'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'rust-lang/rust.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'sebdah/vim-delve'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'shougo/vimshell.vim'
 Plugin 'simnalamburt/vim-mundo'
@@ -184,6 +185,7 @@ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expand
 autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+autocmd FileType json setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 autocmd FileType scss setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 autocmd FileType vue setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
@@ -192,6 +194,7 @@ autocmd FileType haskell setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 autocmd FileType gitcommit setlocal spell complete+=kspell
 autocmd FileType markdown setlocal spell complete+=kspell
 autocmd BufRead,BufNewFile /tmp/.* setlocal spell complete+=kspell
+autocmd BufNewFile *.sh 0r ~/skeletons/script.sh
 
 augroup vagrant
     au!
@@ -244,6 +247,8 @@ nnoremap <leader>d ^f[ rx
 nnoremap <leader>u ^f[ r 
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>a :Ag<CR>
+
+imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 map <Leader><Leader>l <Plug>(easymotion-bd-l)
 map <Leader><Leader>w <Plug>(easymotion-bd-w)
