@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Description: 
+# Help: sk8fold pod <image> <name> <namespace>
+# Args: true
+
+IMAGE="${1:-ubuntu:latest}"
+NAME="${2:-sk8fold-pod}"
+NAMESPACE="${3:-default}"
+
+echo -n "kind: Pod
+apiVersion: v1
+metadata:
+  name: $NAME
+  namespace: $NAMESPACE
+spec:
+  containers:
+  - name: $NAME
+    image: $IMAGE
+    ports:
+      - containerPort: 3000
+    resources:
+      requests:
+        memory: \"128Mi\"
+        cpu: \"100m\"
+      limits:
+        memory: \"128Mi\"
+        cpu: \"100m\"
+"

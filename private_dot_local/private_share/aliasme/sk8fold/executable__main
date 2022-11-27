@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Description: 
+# Help: sk8fold <entity> generates k8s entity
+# Args: false
+
+echo provide entity

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Description: 
+# Help: 
+# Args: false
+
+echo "ffmpeg -i file.mp4 -map 0:v:0 -map 0:a:1 -vcodec h264 -acodec aac -strict -2 out.mp4"

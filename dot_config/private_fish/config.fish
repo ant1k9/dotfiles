@@ -37,6 +37,7 @@ end
 
 alias al='auto-launcher'
 alias allow='direnv allow'
+alias bat='bat --theme GitHub'
 alias box='formatter --header "┏━┓" --prefix "┃ " --suffix " ┃" --footer "┗━┛" --width 90'
 alias c='curl'
 alias cloc='cloc --exclude-list-file=.gitignore'
@@ -57,8 +58,6 @@ alias ncdu='ncdu --color dark -rr -x --exclude .git --exclude node_modules'
 alias r='source ~/.config/fish/config.fish '
 alias semgrep-go='semgrep -f ~/go/pkg/mod/github.com/dgryski/semgrep-go@v0.0.0-20210819041707-9f189cc213ef/'
 alias shmoji='shmoji fzf'
-alias ticket='echo -n "["(git rev-parse --abbrev-ref HEAD | sed -s "s/\(release\|hotfix\)\///g")"]"'
-alias tldr='tldr -p'
 alias trc='vim ~/.tmux.conf'
 alias tree='tree -C'
 alias vimrc='vim ~/.vimrc'
@@ -107,7 +106,7 @@ alias makemigrations='./manage.py makemigrations'
 alias migrate='./manage.py migrate'
 alias mshell='./manage.py shell'
 
-function originpush
+function op
     git push origin (git rev-parse --abbrev-ref HEAD)
 end
 
@@ -221,21 +220,6 @@ function notify-me-at
     end
 end
 
-function commit
-    if test (count $argv) -eq 1
-        set -l cticket (ticket)
-        if test -f go.mod
-            gmt || return
-            if test -f Makefile
-                make lint || return
-                make test || return
-            end
-        end
-        git add .
-        git commit -m "$cticket $argv[1]"
-    end
-end
-
 function godead
     unparam ./...
     staticcheck --unused.whole-program=true -- ./... \
@@ -255,15 +239,22 @@ function chezmoi-re-add
         ~/.vim/ftplugin \
         ~/.config/git/ignore \
         ~/.config/tmuxinator \
+        ~/.local/share/aliasme \
         ~/.config/starship.toml
         chezmoi add -r $file
     end
+
+    chezmoi remove -f ~/.local/share/aliasme/example
 end
 
 function chezmoi-sync
     chezmoi git add .
     chezmoi git commit -- -m "Push local changes "(date '+%Y-%m-%d %H:%M:%S')
     chezmoi git push
+end
+
+function copyfile
+    cat "$argv[1]" | pbcopy
 end
 
 function blog-notifier
@@ -417,7 +408,6 @@ function viddy-agile
         viddy "agile today show"
     end
 end
-
 
 function vifd
     vim -p (fd "$argv[1]")

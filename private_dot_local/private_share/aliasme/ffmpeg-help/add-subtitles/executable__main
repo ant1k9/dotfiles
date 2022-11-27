@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Description: 
+# Help: 
+# Args: false
+
+echo "ffmpeg -i file.mp4 -vf subtitles=subtitles.srt out.mp4"

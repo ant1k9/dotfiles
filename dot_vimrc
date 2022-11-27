@@ -121,7 +121,7 @@ set splitright
 " colorscheme twitchy
 " colorscheme reloaded
 " colorscheme sialoquent
-colorscheme badwolf
+colorscheme angr
 
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'

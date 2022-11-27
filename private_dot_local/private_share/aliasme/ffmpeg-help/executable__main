@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Description: 
+# Help: ffmpeg-help <action> - provides an example of ffmpeg args to perform action
+# Args: false
+
+echo ffmpeg-help provides examples for common operations
