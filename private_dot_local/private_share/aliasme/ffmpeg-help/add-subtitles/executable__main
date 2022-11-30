@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
-# Description: 
-# Help: 
-# Args: false
+# Description: <file> <audio-track> <subtitles>
+# Help: ffmpeg-help add-subtitles <FILE> <AUDIO-TRACK> <SUBTITLES>
+# Args: true
 
-echo "ffmpeg -i file.mp4 -vf subtitles=subtitles.srt out.mp4"
+FILE="$1"
+AUDIO_TRACK="$2"
+SUBTITLES="$3"
+
+ffmpeg -i "$FILE" \
+    -vf subtitles="$SUBTITLES" \
+    -map "0:v:0" -vcodec h264 \
+    -map "0:a:$AUDIO_TRACK" -acodec aac \
+    "subs.$FILE"

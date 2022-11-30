@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
-# Description: 
-# Help: 
-# Args: false
+# Description: <file> <track>
+# Help: ffmpeg-help change-audio-track <FILE> <TRACK>
+# Args: true
 
-echo "ffmpeg -i file.mp4 -map 0:v:0 -map 0:a:1 -vcodec h264 -acodec aac -strict -2 out.mp4"
+FILE="$1"
+TRACK="$2"
+
+ffmpeg -i file.mp4 \
+    -map 0:v:0 -vcodec h264 \
+    -map 0:a:1 -acodec aac \
+    "audio.$FILE"

@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Description: 
+# Help: sk8fold deploy <image> <name> <namespace>
+# Args: true
+
+IMAGE="${1:-ubuntu:latest}"
+NAME="${2:-sk8fold-pod}"
+NAMESPACE="${3:-default}"
+
+echo -n "apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $NAME-deployment
+  namespace: $NAMESPACE
+  labels:
+    app: $NAME
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: $NAME
+  template:
+    metadata:
+      labels:
+        app: $NAME
+    spec:
+      containers:
+      - name: $NAME
+        image: $IMAGE
+        ports:
+          - containerPort: 3000
+        resources:
+          requests:
+            memory: \"128Mi\"
+            cpu: \"100m\"
+          limits:
+            memory: \"128Mi\"
+            cpu: \"100m\"
+"

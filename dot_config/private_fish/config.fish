@@ -234,6 +234,7 @@ end
 
 function chezmoi-re-add
     for file in ~/.vimrc \
+        ~/skeletons \
         ~/.config/fish/config.fish \
         ~/.tmux.conf \
         ~/.vim/ftplugin \

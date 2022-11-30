@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Description: <file>
+# Help: ffmpeg-help list-subtitles <file>
+# Args: true
+
+ffprobe -v error -of json "$1" \
+    -of json -show_entries "stream=index:stream_tags=language" \
+    -select_streams s

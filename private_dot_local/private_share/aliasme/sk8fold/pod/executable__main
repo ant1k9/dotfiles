@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Description: 
+# Description: generate pod template
 # Help: sk8fold pod <image> <name> <namespace>
 # Args: true
 
@@ -7,8 +7,8 @@ IMAGE="${1:-ubuntu:latest}"
 NAME="${2:-sk8fold-pod}"
 NAMESPACE="${3:-default}"
 
-echo -n "kind: Pod
-apiVersion: v1
+echo -n "apiVersion: v1
+kind: Pod
 metadata:
   name: $NAME
   namespace: $NAMESPACE

@@ -195,6 +195,7 @@ autocmd FileType gitcommit setlocal spell complete+=kspell
 autocmd FileType markdown setlocal spell complete+=kspell
 autocmd BufRead,BufNewFile /tmp/.* setlocal spell complete+=kspell
 autocmd BufNewFile *.sh 0r ~/skeletons/script.sh
+autocmd BufNewFile Dockerfile 0r ~/skeletons/Dockerfile
 
 augroup vagrant
     au!

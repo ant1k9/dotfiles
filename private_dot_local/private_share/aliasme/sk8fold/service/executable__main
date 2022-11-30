@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Description: generate service template
+# Help: sk8fold service <name> <port> <namespace>
+# Args: true
+
+NAME="${1:-sk8fold-pod}"
+PORT="${2:-3000}"
+NAMESPACE="${3:-default}"
+
+echo -n "apiVersion: v1
+kind: Service
+metadata:
+  name: $NAME-service
+  namespace: $NAMESPACE
+spec:
+  selector:
+    app.kubernetes.io/name: $NAME
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: $PORT
+"
