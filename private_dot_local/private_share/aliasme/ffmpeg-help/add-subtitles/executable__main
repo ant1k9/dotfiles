@@ -7,7 +7,7 @@ FILE="$1"
 AUDIO_TRACK="$2"
 SUBTITLES="$3"
 
-ffmpeg -i "$FILE" \
+ffmpeg -i "$FILE" -y \
     -vf subtitles="$SUBTITLES" \
     -map "0:v:0" -vcodec h264 \
     -map "0:a:$AUDIO_TRACK" -acodec aac \

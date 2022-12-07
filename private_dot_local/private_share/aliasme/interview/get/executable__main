@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Description: <url>
+# Help: 
+# Args: true
+
+URL="$1"
+
+TITLE="$( \
+    curl $URL 2>/dev/null \
+    | pup 'h1 text{}' \
+    | tr -d '\n' \
+    | awk 'END {$1=$1; print}' \
+)"
+echo "[$TITLE]($URL)"

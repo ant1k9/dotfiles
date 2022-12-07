@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Description: generate service template
-# Help: sk8fold service <name> <port> <namespace>
+# Description: <name> <port> <namespace>
+# Help:
 # Args: true
 
 NAME="${1:-sk8fold-pod}"

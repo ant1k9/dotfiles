@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Description: 
-# Help: sk8fold deploy <image> <name> <namespace>
+# Description: <image> <name> <namespace>
+# Help:
 # Args: true
 
 IMAGE="${1:-ubuntu:latest}"

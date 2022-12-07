@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Description: <file> <start> <duration>
+# Help: 
+# Args: true
+
+FILE="$1"
+START="$2"
+DURATION="$3"
+END=$(( START + DURATION ))
+
+ffmpeg -i "$FILE" \
+    -to "$END" \
+    -b:a 192k -af "afade=t=out:st=$START:d=$DURATION" \
+    -y "fade.out.$FILE"
