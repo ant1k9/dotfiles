@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Description: <image> <name> <namespace>
+# Description: <image> <namespace>
 # Help: 
 # Args: true
 
 IMAGE="${1:-ubuntu:latest}"
-NAME="${2:-sk8fold-pod}"
-NAMESPACE="${3:-default}"
+NAME="$(basename ${IMAGE/%:*/})"
+NAMESPACE="${2:-default}"
 
 echo -n "apiVersion: v1
 kind: Pod

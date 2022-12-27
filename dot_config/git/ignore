@@ -6,6 +6,7 @@ tmp
 
 .envrc
 .run
+.build
 
 *.swp
 *.swo

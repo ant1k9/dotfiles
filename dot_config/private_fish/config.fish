@@ -38,6 +38,7 @@ end
 alias al='auto-launcher'
 alias allow='direnv allow'
 alias bat='bat --theme GitHub'
+alias bld='auto-builder'
 alias box='formatter --header "┏━┓" --prefix "┃ " --suffix " ┃" --footer "┗━┛" --width 90'
 alias c='curl'
 alias cloc='cloc --exclude-list-file=.gitignore'
@@ -260,15 +261,10 @@ function copyfile
     cat "$argv[1]" | pbcopy
 end
 
-function blog-notifier
-    ssh $BLOG_NOTIFIER_HOST -i $BLOG_NOTIFIER_KEY_RSA \
-        "cd ~/blog-notifier && ./blog_notifier.py $argv"
-end
-
 function rf
     if test (count $argv) -eq 3
         for file in (fd -e "$argv[1]" -X grep -H "$argv[2]" '{}' | cut -d':' -f1)
-            sed -i".bak" 's!'"$argv[2]"'!'"$argv[3]"'!g' "$file"
+            sed -i 's!'"$argv[2]"'!'"$argv[3]"'!g' "$file"
         end
     end
 end
