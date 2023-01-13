@@ -1,34 +1,24 @@
 #!/usr/bin/env bash
 # Description: <image> <namespace>
-# Help:
+# Help: 
 # Args: true
 
 IMAGE="${1:-ubuntu:latest}"
 NAME="$(basename ${IMAGE/%:*/})"
 NAMESPACE="${2:-default}"
 
-echo -n "apiVersion: apps/v1
-kind: Deployment
+echo -n "apiVersion: batch/v1
+kind: Job
 metadata:
-  name: $NAME-deployment
+  name: $NAME
   namespace: $NAMESPACE
-  labels:
-    app: $NAME
 spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: $NAME
   template:
-    metadata:
-      labels:
-        app: $NAME
     spec:
       containers:
       - name: $NAME
         image: $IMAGE
-        ports:
-          - containerPort: 3000
+        command: ["sleep", "3600"]
         resources:
           requests:
             memory: \"128Mi\"
