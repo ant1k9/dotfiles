@@ -1,0 +1,159 @@
+## Guide for interview preparation
+
+- Databases
+  - Relational databases
+    - ACID
+      - [The ACID model](https://www.lifewire.com/the-acid-model-1019731)
+      - [Database Consistency and Its Role Within Transactions](https://www.lifewire.com/database-consistency-definition-1019249)
+      - [Understanding the Isolation Property in a Database](https://www.lifewire.com/isolation-definition-1019173)
+      - [What every developer should know about database consistency](https://robertovitillo.com/what-every-developer-should-know-about-database-consistency/)
+      - Isolation levels
+        - [Difference between "read commited" and "repeatable read"](https://stackoverflow.com/a/4036063/17436166)
+        - [Concurrency Effects](https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/ms190805(v=sql.105)?redirectedfrom=MSDN)
+        - MVCC
+    - Indexes
+      - B-Tree
+      - Hash
+      - Gin
+    - SQL
+      - [12 Common Mistakes and Missed Optimization Opportunities in SQL](https://hakibenita.com/sql-dos-and-donts)
+    - **Postgres**
+      - [7 More Useful SQL and/or Postgres Techniques](http://jeremyraines.com/2016/10/11/7-more-useful-sql-and-or-postgres-techniques.html?utm_source=postgresweekly&utm_medium=email)
+      - [Postgres Unknown Features](https://hakibenita.com/postgresql-unknown-features)
+      - [PostgreSQL at Scale: Database Schema Changes Without Downtime](https://medium.com/paypal-tech/postgresql-at-scale-database-schema-changes-without-downtime-20d3749ed680)
+      - [Don't Do This](https://wiki.postgresql.org/wiki/Don%27t_Do_This)
+      - [Visualizing PostgreSQL Vacuum Progress](https://www.davepacheco.net/blog/post/2019-05-22-visualizing-postgresql-vacuum-progress/)
+      - [Understanding lateral joins in Postgres](https://www.cybertec-postgresql.com/en/understanding-lateral-joins-in-postgresql/)
+      - [Safe and unsafe operations for high volume PostgreSQL](https://leopard.in.ua/2016/09/20/safe-and-unsafe-operations-postgresql?utm_source=postgresweekly&utm_medium=email#.WOPAvBLyuV5)
+      - [Getting The Most Out Of Your PostgreSQL Indexes](https://pgdash.io/blog/postgres-indexes.html)
+      - [Tracking View Dependencies in Postgresql](https://www.cybertec-postgresql.com/en/tracking-view-dependencies-in-postgresql/)
+      - [Tune Linux Kernel Parameters For PostgreSQL Optimization](https://www.percona.com/blog/2018/08/29/tune-linux-kernel-parameters-for-postgresql-optimization/)
+      - [10 Common PostgreSQL Errors](https://www.percona.com/blog/2020/06/05/10-common-postgresql-errors/)
+    - **MySQL/MariaDB**
+      - [What if … MySQL’s repeatable reads cause you to lose money?](http://www.tusacentral.com/joomla/index.php/mysql-blogs/244-what-if-mysql-s-repeatable-reads-cause-you-to-lose-money)
+    - SQLite3
+    - [Mazur's SQL Style Guide](https://github.com/mattm/sql-style-guide)
+  - NoSQL
+    - **Redis**
+      - [Redis Tutorial](https://www.tutorialspoint.com/redis/index.htm)
+      - [Redis Data Types: The Basics](https://thenewstack.io/redis-data-types-the-basics/)
+    - Memcached
+    - Tarantool
+    - **Kafka**
+      - [Kafka Consumers: Reading Data from Kafka](https://www.oreilly.com/library/view/kafka-the-definitive/9781491936153/ch04.html)
+    - Clickhouse
+    - MongoDB
+    - **ElasticSearch**
+      - [Elasticsearch Tutorial](https://www.tutorialspoint.com/elasticsearch/index.htm)
+    - Spanner
+    - DynamoDB
+    - [Cassandra vs. MongoDB](https://scalegrid.io/blog/cassandra-vs-mongodb)
+    - Tutorials
+      - [Build a NoSQL Database From Scratch in 1000 Lines of Code](https://betterprogramming.pub/build-a-nosql-database-from-the-scratch-in-1000-lines-of-code-8ed1c15ed924)
+  - [A Comparison of Advanced, Modern Cloud Databases](https://brandur.org/cloud-databases)
+- Operating systems
+  - Linux
+    - Ubuntu/Debian
+    - Centos/Fedora
+    - NixOS
+  - FreeBSD
+- Programming languages
+  - Go
+    - [Build TCP Protocol](https://ieftimov.com/post/understanding-bytes-golang-build-tcp-protocol)
+    - [How We Saved 70K Cores Across 30 Mission-Critical Services](https://eng.uber.com/how-we-saved-70k-cores-across-30-mission-critical-services/)
+    - [Generics can make your code slower](https://planetscale.com/blog/generics-can-make-your-go-code-slower)
+    - [A visual guide to Go Memory Allocator from scratch](https://medium.com/@ankur_anand/a-visual-guide-to-golang-memory-allocator-from-ground-up-e132258453ed)
+  - Python
+  - Rust
+   - [Learn Macros In Rust](https://github.com/tfpk/macrokata)
+   - [Rust Latam: procedural macros workshop](https://github.com/dtolnay/proc-macro-workshop)
+  - C/C++
+  - Kotlin
+    - [Exception handling in Kotlin Coroutines](https://kt.academy/article/cc-exception-handling)
+    - [Best Way To Learn Kotlin For Experienced Programmers](https://dev.to/vtsen/best-way-to-learn-kotlin-for-experienced-programmers-1i6l)
+  - Assembly
+  - Bash
+    - [Autodocumenting Makefiles](https://daniel.feldroy.com/posts/autodocumenting-makefiles)
+- Algorithms
+  - Data structures
+    - [MemTable, WAL, SSTable, Log Structured Merge(LSM) Trees](https://ninegene.com/2022/02/21/memtable-wal-sstable-log-structured-mergelsm-trees/)
+    - [Bloom Filters by Example](https://llimllib.github.io/bloomfilter-tutorial/)
+    - [The Piece Table](https://darrenburns.net/posts/piece-table/)
+  - Sorting
+  - Complexity
+  - Distributed algorithms
+    - [Paxos, Raft, EPaxos: How Has Distributed Consensus Technology Evolved?](https://www.alibabacloud.com/blog/paxos-raft-epaxos-how-has-distributed-consensus-technology-evolved_597127)
+    - Gossip
+    - Paxos
+    - Raft
+      - [Implementing Raft](https://eli.thegreenplace.net/2020/implementing-raft-part-0-introduction/)
+    - Protocols
+      - [Two-Phase Commit Mechanism](https://docs.oracle.com/cd/E18283_01/server.112/e17120/ds_txns003.htm)
+  - Other
+    - [Challenging algorithms and data structures every programmer should try](https://austinhenley.com/blog/challengingalgorithms.html)
+- DevOps/DevTools
+  - Kubernetes
+    - [A Primer: Accessing services in Kubernetes](https://blog.alexellis.io/primer-accessing-kubernetes-services/)
+    - [k8s-deployment-strategies](https://github.com/ContainerSolutions/k8s-deployment-strategies)
+    - [Introduction to Ingressing With Kubernetes](https://priyankvex.wordpress.com/2018/02/04/introduction-to-ingressing-with-kubernetes/)
+    - [The Almighty Pause Container](https://www.ianlewis.org/en/almighty-pause-container)
+    - [A visual guide on troubleshooting Kubernetes deployments](https://learnk8s.io/troubleshooting-deployments)
+    - [Kubernetes Deployment Antipatterns](https://medium.com/containers-101/kubernetes-deployment-antipatterns-part-1-9e7b54a08b9)
+  - Git
+  - Docker
+    - **Podman**:
+      - [Podman socket activation](https://github.com/containers/podman/blob/main/docs/tutorials/socket_activation.md)
+  - Web Servers
+    - **NGINX**
+      - [Avoiding top 10 NGINX configuration mistakes](https://www.nginx.com/blog/avoiding-top-10-nginx-configuration-mistakes/)
+  - CI/CD
+    - Gitlab
+    - Github
+- Multithreaded programming
+  - Synchonization primitives
+    - [Go: sync.RWMutex internals and usage explained](https://sreramk.medium.com/go-sync-rwmutex-internals-and-usage-explained-9eb15865bba)
+  - Threads and processes
+    - [Life and Death of a Linux Process](https://natanyellin.com/posts/life-and-death-of-a-linux-process/)
+- Networking
+  - OSI model
+    - [The OSI Model – The 7 Layers of Networking Explained](https://www.freecodecamp.org/news/osi-model-networking-layers-explained-in-plain-english/)
+    - [List of network protocols (OSI model)](https://www.wikiwand.com/en/List_of_network_protocols_(OSI_model))
+    - Presentation Layer
+      - [JSON-RPC vs REST for distributed platform APIs](https://dev.to/radixdlt/json-rpc-vs-rest-for-distributed-platform-apis-3n0m)
+      - HTTP/HTTPS
+    - Transport Layer
+      - TCP/UDP
+    - Network Layer
+      - IP
+        - [Reasons for servers to support IPv6](https://jvns.ca/blog/2022/01/29/reasons-for-servers-to-support-ipv6/)
+  - DNS
+    - [Some ways DNS can break](https://jvns.ca/blog/2022/01/15/some-ways-dns-can-break/)
+  - Websockets
+- Clouds
+  - AWS
+  - GCP
+  - Azure
+  - Yandex Cloud
+- Architecture
+  - Microservices
+    - [The Twelve-Factor App](https://12factor.net/)
+  - Software architecture
+    - [Measuring Software Complexity](https://thevaluable.dev/complexity-metrics-environment/)
+- Security
+  - Authentication
+    - OAuth2.0
+      - [How to mock OAuth 2.0 in Go](https://blog.seriesci.com/how-to-mock-oauth-in-go/)
+- Machine Learning
+- Blockchain
+  - [Building Blockchain In Go](https://jeiwan.net/posts/building-blockchain-in-go-part-1/)
+- Computer Architecture
+  - [Von Neumann Architecture](https://www.sciencedirect.com/topics/computer-science/von-neumann-architecture)
+  - Memory
+    - [SRAM VS DRAM: What Is the Difference Between Them](https://www.minitool.com/news/sram-vs-dram.html)
+    - [Virtual Memory](https://www.indeed.com/career-advice/career-development/virtual-memory)
+- Testing
+  - [Testing Without Mocks: A Pattern Language](https://www.jamesshore.com/v2/projects/testing-without-mocks/testing-without-mocks)
+- Productivity
+  - [11 Laws of Software Estimation for Complex Work](https://mdalmijn.com/p/11-laws-of-software-estimation-for-complex-work)
+  - [Why deadlines are pointless and what to do instead](https://lucasfcosta.com/2022/09/15/deadlines.html)
+  - [Things they didn’t teach you about Software Engineering](https://vadimkravcenko.com/shorts/things-they-didnt-teach-you/)

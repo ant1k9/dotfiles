@@ -244,6 +244,7 @@ function chezmoi-re-add
         ~/.config/git/ignore \
         ~/.config/tmuxinator \
         ~/.local/share/aliasme \
+        ~/.local/share/bookmarks \
         ~/.config/starship.toml
         chezmoi add -r $file
     end
