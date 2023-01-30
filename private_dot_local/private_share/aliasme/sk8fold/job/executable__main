@@ -18,7 +18,7 @@ spec:
       containers:
       - name: $NAME
         image: $IMAGE
-        command: ["sleep", "3600"]
+        command: [\"sleep\", \"3600\"]
         resources:
           requests:
             memory: \"128Mi\"

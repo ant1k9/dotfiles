@@ -313,6 +313,12 @@ function ts
     _tmux_session "$PWD" (basename $PWD)
 end
 
+function ta
+    _tmux_attach "$argv[1]"
+end
+
+complete -f -c ta -a "(tmux list-sessions | cut -d: -f1)"
+
 function notify-on-finish
     if test (count $argv) -eq 2
         while pgrep -f "$argv[1]" > /dev/null
@@ -347,15 +353,6 @@ function html-to-pdf
     open "$OUT_PDF"
 end
 
-function docable
-    function _docable
-        cd "$HOME/ny2j/projects/docable-notebooks"
-        open "http://localhost:3000" &
-        yarn dev
-    end
-    _restore_dir _docable
-end
-
 function poli
     function _poli
         cd "$HOME/Programs/poli"
@@ -381,12 +378,15 @@ function go-mod-init
     end
 end
 
+function grammarly
+    firefox https://app.grammarly.com/docs/new &
+end
+
 function fish-functions
     grep -Eo "^function (.*)" "$HOME/.config/fish/config.fish" \
         | choose 1 -f ' ' | egrep -v '^_' | sort \
         | xargs -I'{}' printf "\033[0;32m{}\033[0m\n"
 end
-
 
 function teng
     trans -t eng -s ru "$argv"
@@ -394,10 +394,6 @@ end
 
 function tru
     trans -t ru "$argv"
-end
-
-function grammarly
-    firefox https://app.grammarly.com/docs/new &
 end
 
 function viddy-agile
