@@ -37,7 +37,7 @@ end
 
 alias al='auto-launcher'
 alias allow='direnv allow'
-alias bat='bat --theme GitHub'
+alias bat='bat --theme zenburn'
 alias bld='auto-builder'
 alias box='formatter --header "┏━┓" --prefix "┃ " --suffix " ┃" --footer "┗━┛" --width 90'
 alias c='curl'
@@ -284,25 +284,25 @@ function _tmux_attach
     end
 end
 
+function _prepare_tmux_session
+    cd "$argv[1]"
+    tmux new-session -d -s "$argv[2]"
+    tmux split-window -h -t "$argv[2]:1.0"
+    tmux split-window -t "$argv[2]:1.1"
+    tmux select-pane -t "$argv[2]:1.0"
+    for i in 0 1 2
+        tmux send-keys -t "$argv[2]:1.$i" clear Enter
+    end
+end
+
 function _tmux_session
     if test (count $argv) -eq 2
-        if tmux has-session -t "$argv[2]"
-            _tmux_attach "$argv[2]"
-        else
+        if ! tmux has-session -t "$argv[2]"
             set -l CURRENT_DIR "$PWD"
-            cd "$argv[1]"
-
-            tmux new-session -d -s "$argv[2]"
-            tmux split-window -h -t "$argv[2]:1.0"
-            tmux split-window -t "$argv[2]:1.1"
-            tmux select-pane -t "$argv[2]:1.0"
-            for i in 0 1 2
-                tmux send-keys -t "$argv[2]:1.$i" clear Enter
-            end
-
+            _prepare_tmux_session $argv[..]
             cd "$CURRENT_DIR"
-            _tmux_attach "$argv[2]"
         end
+        _tmux_attach "$argv[2]"
     end
 end
 
@@ -319,6 +319,37 @@ function ta
 end
 
 complete -f -c ta -a "(tmux list-sessions | cut -d: -f1)"
+
+function _tmux_init_with_commands
+    set -f SESSION_DIR "$argv[1]"
+    set -f SESSION_NAME (basename "$SESSION_DIR")
+    if tmux list-sessions | grep "$SESSION_NAME" &>/dev/null
+        ta "$SESSION_NAME"
+        return
+    end
+
+    mkdir -p "$SESSION_DIR"
+
+    set -l CURRENT_DIR "$PWD"
+    _prepare_tmux_session "$SESSION_DIR" "$SESSION_NAME"
+    for i in (seq 0 2)
+        set -l ARGV_IDX (math "$i + 2")
+        set -l CMD "$argv[$ARGV_IDX]"
+        if test -z "$CMD"
+            set CMD "clear"
+        end
+        tmux send-keys -t "$SESSION_NAME:1.$i" "$CMD" Enter
+    end
+
+    cd "$CURRENT_DIR"
+    _tmux_attach "$SESSION_NAME"
+end
+
+function planner
+    _tmux_init_with_commands "$HOME/ny2j/sessions/planner" \
+        "clear" \
+        "repeat -d 5 --only-diff \"agile today show\""
+end
 
 function notify-on-finish
     if test (count $argv) -eq 2
@@ -409,6 +440,7 @@ function vifd
     vim -p (fd "$argv[1]")
 end
 
+test -s "$HOME/.config/fish/local.fish"; and source "$HOME/.config/fish/local.fish"
 test -s "$HOME/.config/fish/pass.fish"; and source "$HOME/.config/fish/pass.fish"
 test -s "$HOME/.config/fish/work.fish"; and source "$HOME/.config/fish/work.fish"
 test -s "$HOME/.config/envman/load.fish"; and source "$HOME/.config/envman/load.fish"
