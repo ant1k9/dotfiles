@@ -29,6 +29,7 @@
       - [Tracking View Dependencies in Postgresql](https://www.cybertec-postgresql.com/en/tracking-view-dependencies-in-postgresql/)
       - [Tune Linux Kernel Parameters For PostgreSQL Optimization](https://www.percona.com/blog/2018/08/29/tune-linux-kernel-parameters-for-postgresql-optimization/)
       - [10 Common PostgreSQL Errors](https://www.percona.com/blog/2020/06/05/10-common-postgresql-errors/)
+      - [How to prettify the JSON output in PostgreSQL®](https://ftisiot.net/postgresqljson/how-to-prettify-json-output-in-postgresql/)
     - **MySQL/MariaDB**
       - [What if … MySQL’s repeatable reads cause you to lose money?](http://www.tusacentral.com/joomla/index.php/mysql-blogs/244-what-if-mysql-s-repeatable-reads-cause-you-to-lose-money)
     - SQLite3
@@ -67,6 +68,7 @@
   - Rust
    - [Learn Macros In Rust](https://github.com/tfpk/macrokata)
    - [Rust Latam: procedural macros workshop](https://github.com/dtolnay/proc-macro-workshop)
+   - [Rust concepts I wish I learned earlier](https://rauljordan.com/rust-concepts-i-wish-i-learned-earlier/)
   - C/C++
   - Kotlin
     - [Exception handling in Kotlin Coroutines](https://kt.academy/article/cc-exception-handling)
@@ -74,6 +76,7 @@
   - Assembly
   - Bash
     - [Autodocumenting Makefiles](https://daniel.feldroy.com/posts/autodocumenting-makefiles)
+    - [A Practical Guide to fzf: Building a File Explorer](https://thevaluable.dev/practical-guide-fzf-example/)
 - Algorithms
   - Data structures
     - [MemTable, WAL, SSTable, Log Structured Merge(LSM) Trees](https://ninegene.com/2022/02/21/memtable-wal-sstable-log-structured-mergelsm-trees/)
@@ -91,6 +94,7 @@
       - [Two-Phase Commit Mechanism](https://docs.oracle.com/cd/E18283_01/server.112/e17120/ds_txns003.htm)
   - Other
     - [Challenging algorithms and data structures every programmer should try](https://austinhenley.com/blog/challengingalgorithms.html)
+    - [The yaml document from hell](https://ruudvanasseldonk.com/2023/01/11/the-yaml-document-from-hell)
 - DevOps/DevTools
   - Kubernetes
     - [A Primer: Accessing services in Kubernetes](https://blog.alexellis.io/primer-accessing-kubernetes-services/)
@@ -100,6 +104,7 @@
     - [A visual guide on troubleshooting Kubernetes deployments](https://learnk8s.io/troubleshooting-deployments)
     - [Kubernetes Deployment Antipatterns](https://medium.com/containers-101/kubernetes-deployment-antipatterns-part-1-9e7b54a08b9)
   - Git
+    - [Git Commands You Probably Do Not Need](https://myme.no/posts/2023-01-22-git-commands-you-do-not-need.html)
   - Docker
     - **Podman**:
       - [Podman socket activation](https://github.com/containers/podman/blob/main/docs/tutorials/socket_activation.md)
@@ -157,3 +162,4 @@
   - [11 Laws of Software Estimation for Complex Work](https://mdalmijn.com/p/11-laws-of-software-estimation-for-complex-work)
   - [Why deadlines are pointless and what to do instead](https://lucasfcosta.com/2022/09/15/deadlines.html)
   - [Things they didn’t teach you about Software Engineering](https://vadimkravcenko.com/shorts/things-they-didnt-teach-you/)
+  - [Contracts you should never sign](https://vadimkravcenko.com/shorts/contracts-you-should-never-sign/)

@@ -1,0 +1,2 @@
+- [44 Books for DevOps, Site Reliability, and Cloud Engineers](https://spacelift.io/blog/devops-books)
+- [Beej's Guides](https://beej.us/guide/)

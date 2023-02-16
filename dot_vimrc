@@ -114,13 +114,13 @@ set splitbelow
 set splitright
 
 " colorscheme Chasing_Logic
-" colorscheme woju
 " colorscheme blackboard
 " colorscheme OceanicNext
 " colorscheme adventurous
 " colorscheme twitchy
 " colorscheme reloaded
 " colorscheme sialoquent
+" colorscheme woju
 colorscheme angr
 
 let g:ycm_server_keep_logfiles = 1

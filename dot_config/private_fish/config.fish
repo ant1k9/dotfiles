@@ -37,6 +37,7 @@ end
 
 alias al='auto-launcher'
 alias allow='direnv allow'
+alias backup='backup-tool'
 alias bat='bat --theme zenburn'
 alias bld='auto-builder'
 alias box='formatter --header "┏━┓" --prefix "┃ " --suffix " ┃" --footer "┗━┛" --width 90'
@@ -44,7 +45,6 @@ alias c='curl'
 alias cloc='cloc --exclude-list-file=.gitignore'
 alias commitlint-head='commitlint --from=HEAD~1'
 alias dc='docker-compose'
-alias refresh-dropbox-token='gotask -t $HOME/.config/task/Taskfile.yml update-token'
 alias dush='du -sh'
 alias emacs='emacs -nw'
 alias fishrc='vim ~/.config/fish/config.fish'
@@ -58,6 +58,8 @@ alias mkdir='mkdir -p'
 alias ncdu='ncdu --color dark -rr -x --exclude .git --exclude node_modules'
 alias pc='podman-compose'
 alias r='source ~/.config/fish/config.fish '
+alias refresh-dropbox-token='gotask -t $HOME/.config/task/Taskfile.yml update-token'
+alias rmf='rm -rf'
 alias semgrep-go='semgrep -f ~/go/pkg/mod/github.com/dgryski/semgrep-go@v0.0.0-20210819041707-9f189cc213ef/'
 alias shmoji='shmoji fzf'
 alias tab='echo -ne "\t" | pbcopy'
@@ -74,6 +76,7 @@ end
 # git aliases
 alias amend='git add .; git commit -a --amend'
 alias chk='git checkout'
+alias ga='git add .'
 alias gbr='git branch'
 alias gci='gitci'
 alias gd='git diff'
@@ -241,6 +244,7 @@ function chezmoi-re-add
         ~/.config/fish/config.fish \
         ~/.tmux.conf \
         ~/.vim/ftplugin \
+        ~/.config/diary \
         ~/.config/git/ignore \
         ~/.config/tmuxinator \
         ~/.local/share/aliasme \
@@ -321,8 +325,8 @@ end
 complete -f -c ta -a "(tmux list-sessions | cut -d: -f1)"
 
 function _tmux_init_with_commands
-    set -f SESSION_DIR "$argv[1]"
-    set -f SESSION_NAME (basename "$SESSION_DIR")
+    set -l SESSION_DIR "$argv[1]"
+    set -l SESSION_NAME (basename "$SESSION_DIR")
     if tmux list-sessions | grep "$SESSION_NAME" &>/dev/null
         ta "$SESSION_NAME"
         return
@@ -342,13 +346,13 @@ function _tmux_init_with_commands
     end
 
     cd "$CURRENT_DIR"
-    _tmux_attach "$SESSION_NAME"
 end
 
 function planner
     _tmux_init_with_commands "$HOME/ny2j/sessions/planner" \
         "clear" \
-        "repeat -d 5 --only-diff \"agile today show\""
+        "repeat -d 5 --only-diff \"agile today show\"" \
+        "repeat -d 5 --only-diff \"noter\""
 end
 
 function notify-on-finish
@@ -438,6 +442,10 @@ end
 
 function vifd
     vim -p (fd "$argv[1]")
+end
+
+function bookmarks-notes
+    BOOKMARKS_NOTES_DIR="$HOME/bookmarks" bookmarks $argv
 end
 
 test -s "$HOME/.config/fish/local.fish"; and source "$HOME/.config/fish/local.fish"

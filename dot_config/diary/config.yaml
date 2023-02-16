@@ -1,0 +1,28 @@
+- name: sleeping hours
+  fields:
+    - name: hours
+      title: How many hours have I slept today?
+    - name: feeling good
+      title: How am I feeling well (from 1 to 10)?
+  notifications:
+    - at: "11:00"
+      message: "add record to diary about your previous day"
+      type: "notify-send"
+- name: exercises
+  fields:
+    - name: push-ups
+      title: How many push-ups have I done today?
+    - name: pull-ups
+      title: How many pull-ups have I done today?
+    - name: squatting
+      title: How many squatting have I done today?
+    - name: leg raises
+      title: How many leg raises have I done today?
+  notifications:
+    - at: "23:00"
+      message: "add record to diary about exercises"
+      type: "notify-send"
+- name: food spendings
+  fields:
+    - name: money
+      title: How much money did I spend today on food?
