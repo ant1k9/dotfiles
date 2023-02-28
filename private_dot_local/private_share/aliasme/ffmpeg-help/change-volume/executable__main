@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Description: <file> <dB>
+# Help: ffmpeg-help change-volume <FILE> <DECIBEL>
+# Args: true
+
+FILE="$1"
+DECIBEL="$2"
+
+ffmpeg -i "$FILE" -y \
+    -b:a 192k \
+    -filter:a "volume=$DECIBEL" \
+    "audio.$FILE"

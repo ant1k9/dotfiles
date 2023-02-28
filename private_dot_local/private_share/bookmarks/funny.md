@@ -1,1 +1,2 @@
 - [No HTML](https://no-ht.ml/)
+- [Generate nonsense activity](https://github.com/svenstaro/genact)

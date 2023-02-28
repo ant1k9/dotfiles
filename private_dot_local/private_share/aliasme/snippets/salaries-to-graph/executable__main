@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Description: 
+# Help: 
+# Args: false
+
+psql -U assistant -qXAt -F ',' -c "SELECT TO_CHAR(v.published_at, 'yyyy-mm') AS month,
+  ROUND(AVG(v.salary_to)::NUMERIC) average_from 
+FROM work_vacancy AS v
+  LEFT JOIN work_vacancytag AS vt ON v.id = vt.vacancy_id
+  LEFT JOIN work_tag AS t ON vt.tag_id = t.id
+  GROUP BY month
+  ORDER BY month DESC
+  LIMIT 48"  | uplot barplot -d ',' 2>&1

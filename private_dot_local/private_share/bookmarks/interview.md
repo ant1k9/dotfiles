@@ -64,6 +64,8 @@
     - [How We Saved 70K Cores Across 30 Mission-Critical Services](https://eng.uber.com/how-we-saved-70k-cores-across-30-mission-critical-services/)
     - [Generics can make your code slower](https://planetscale.com/blog/generics-can-make-your-go-code-slower)
     - [A visual guide to Go Memory Allocator from scratch](https://medium.com/@ankur_anand/a-visual-guide-to-golang-memory-allocator-from-ground-up-e132258453ed)
+    - [Common Anti-Patterns in Go Web Applications](https://threedots.tech/post/common-anti-patterns-in-go-web-applications/)
+    - [Profile-guided optimization preview](https://go.dev/blog/pgo-preview)
   - Python
   - Rust
    - [Learn Macros In Rust](https://github.com/tfpk/macrokata)
@@ -95,6 +97,7 @@
   - Other
     - [Challenging algorithms and data structures every programmer should try](https://austinhenley.com/blog/challengingalgorithms.html)
     - [The yaml document from hell](https://ruudvanasseldonk.com/2023/01/11/the-yaml-document-from-hell)
+    - [Why does 0.1 + 0.2 = 0.30000000000000004?](https://jvns.ca/blog/2023/02/08/why-does-0-1-plus-0-2-equal-0-30000000000000004/)
 - DevOps/DevTools
   - Kubernetes
     - [A Primer: Accessing services in Kubernetes](https://blog.alexellis.io/primer-accessing-kubernetes-services/)

@@ -66,6 +66,7 @@ alias tab='echo -ne "\t" | pbcopy'
 alias trc='vim ~/.tmux.conf'
 alias tree='tree -C'
 alias vimrc='vim ~/.vimrc'
+alias vimp='vim -p'
 
 # Helpers
 if test (uname) != "Darwin"
@@ -185,8 +186,9 @@ end
 
 function tomp3
     if test (count $argv) -gt 0
-        set -l mp3file (string replace -r '\-[\w\d]+\.\w+' '.mp3' "$argv[1]")
-        ffmpeg -i "$argv[1]" -b:a 256k "$mp3file"
+        set -l mp3file (string replace -r ' \[[\w\d-]+\]\.\w+' '.mp3' "$argv[1]")
+        ffmpeg -i "$argv[1]" -b:a 192k "$mp3file"
+        setmid3v2from "$mp3file"
         rm "$argv[1]"
     end
 end
@@ -214,8 +216,8 @@ end
 
 function ydlmp3
     if test (count $argv) -gt 0
-        set -l filename (youtube-dl "$argv[1]" --get-filename | sed 's/webm/opus/g')
-        youtube-dl -x "$argv[1]"
+        set -l filename (yt-dlp "$argv[1]" --get-filename | sed 's/webm/opus/g')
+        yt-dlp -x --audio-quality 10 "$argv[1]"
         tomp3 "$filename" && setmid3v2from "$filename"
     end
 end
