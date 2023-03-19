@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Description: 
+# Help: 
+# Args: false
+
+echo "provide database name to coneect"

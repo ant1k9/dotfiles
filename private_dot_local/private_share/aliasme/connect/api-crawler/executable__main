@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Description: 
+# Help: 
+# Args: false
+
+psql "$API_CRAWLER_DB"

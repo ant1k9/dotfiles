@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Description: 
+# Help: 
+# Args: false
+
+sqlite3 -separator "," "$DIARY_DB" "
+    SELECT 'date', 'push-ups', 'pull-ups', 'leg-raises', 'squatting'
+    UNION
+    SELECT week, SUM(push_ups), SUM(pull_ups), SUM(leg_raises), SUM(squatting)
+    FROM (
+        SELECT strftime('%Y/%W', date, 'localtime', 'weekday 0', '-6 days') as week, push_ups, pull_ups, squatting, leg_raises
+        FROM exercises
+    )
+    GROUP BY week
+" | tac | csvlook

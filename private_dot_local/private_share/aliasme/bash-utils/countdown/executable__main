@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Description: 
+# Help: 
+# Args: true
+
+countdown() {
+    start="$(( $(date '+%s') + $1))"
+    while [ $start -ge $(date +%s) ]; do
+        time="$(( $start - $(date +%s) ))"
+        printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+        sleep 0.1
+    done
+    printf "Timer's up!"
+}
+
+beep() {
+    echo -en "\a"
+}
+
+countdown $1 && beep

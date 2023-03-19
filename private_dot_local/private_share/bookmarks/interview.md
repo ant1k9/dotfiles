@@ -57,6 +57,7 @@
     - Ubuntu/Debian
     - Centos/Fedora
     - NixOS
+    - Internals
   - FreeBSD
 - Programming languages
   - Go
@@ -66,12 +67,16 @@
     - [A visual guide to Go Memory Allocator from scratch](https://medium.com/@ankur_anand/a-visual-guide-to-golang-memory-allocator-from-ground-up-e132258453ed)
     - [Common Anti-Patterns in Go Web Applications](https://threedots.tech/post/common-anti-patterns-in-go-web-applications/)
     - [Profile-guided optimization preview](https://go.dev/blog/pgo-preview)
+    - [Coverage profiling support for integration tests](https://go.dev/testing/coverage/)
   - Python
   - Rust
-   - [Learn Macros In Rust](https://github.com/tfpk/macrokata)
-   - [Rust Latam: procedural macros workshop](https://github.com/dtolnay/proc-macro-workshop)
-   - [Rust concepts I wish I learned earlier](https://rauljordan.com/rust-concepts-i-wish-i-learned-earlier/)
+    - [Learn Macros In Rust](https://github.com/tfpk/macrokata)
+    - [Rust Latam: procedural macros workshop](https://github.com/dtolnay/proc-macro-workshop)
+    - [Rust concepts I wish I learned earlier](https://rauljordan.com/rust-concepts-i-wish-i-learned-earlier/)
+    - [The Rust Performance BookThe Rust Performance Book](https://nnethercote.github.io/perf-book/title-page.html)
   - C/C++
+    - [Few lesser known tricks, quirks and features of C](https://blog.joren.ga/less-known-c)
+    - [Build Your Own Redis with C/C++](https://build-your-own.org/redis/)
   - Kotlin
     - [Exception handling in Kotlin Coroutines](https://kt.academy/article/cc-exception-handling)
     - [Best Way To Learn Kotlin For Experienced Programmers](https://dev.to/vtsen/best-way-to-learn-kotlin-for-experienced-programmers-1i6l)
@@ -106,8 +111,10 @@
     - [The Almighty Pause Container](https://www.ianlewis.org/en/almighty-pause-container)
     - [A visual guide on troubleshooting Kubernetes deployments](https://learnk8s.io/troubleshooting-deployments)
     - [Kubernetes Deployment Antipatterns](https://medium.com/containers-101/kubernetes-deployment-antipatterns-part-1-9e7b54a08b9)
+    - [Cgroups - Deep Dive into Resource Management in Kubernetes](https://martinheinz.dev/blog/91)
   - Git
     - [Git Commands You Probably Do Not Need](https://myme.no/posts/2023-01-22-git-commands-you-do-not-need.html)
+    - [How to Improve Performance in Git: The Complete Guide](https://www.git-tower.com/blog/git-performance/)
   - Docker
     - **Podman**:
       - [Podman socket activation](https://github.com/containers/podman/blob/main/docs/tutorials/socket_activation.md)
