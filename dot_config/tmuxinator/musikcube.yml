@@ -11,4 +11,4 @@ windows:
         - trans -t eng -I
         - musikcube
         - cd "/home/antik/Music/bglist"
-        - cd "/home/antik/Music/phone 107/buffer"
+        - cd "/home/antik/Music/phone 108/buffer"

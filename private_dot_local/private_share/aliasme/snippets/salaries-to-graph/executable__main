@@ -3,7 +3,7 @@
 # Help: 
 # Args: false
 
-psql -U assistant -qXAt -F ',' -c "SELECT TO_CHAR(v.published_at, 'yyyy-mm') AS month,
+psql "$REMOTE_ASSISTANT_DB" -qXAt -F ',' -c "SELECT TO_CHAR(v.published_at, 'yyyy-mm') AS month,
   ROUND(AVG(v.salary_to)::NUMERIC) average_from 
 FROM work_vacancy AS v
   LEFT JOIN work_vacancytag AS vt ON v.id = vt.vacancy_id

@@ -68,7 +68,7 @@ alias tailf='tail -f'
 alias trc='vim ~/.tmux.conf'
 alias tree='tree -C'
 alias vimrc='vim ~/.vimrc'
-alias vimp='vim -p'
+alias vim='vim -p'
 
 # Helpers
 if test (uname) != "Darwin"
@@ -426,6 +426,14 @@ function fish-functions
     grep -Eo "^function (.*)" "$HOME/.config/fish/config.fish" \
         | choose 1 -f ' ' | egrep -v '^_' | sort \
         | xargs -I'{}' printf "\033[0;32m{}\033[0m\n"
+end
+
+function psf
+    ps aux | grep -E ( \
+        pgrep -f "$argv[1]" \
+        | tr '\n' '|' \
+        | awk '{print substr($1, 1, length($1)-1)}' \
+    )
 end
 
 function teng

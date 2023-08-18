@@ -1,1 +1,1 @@
-- [init project](https://stepik.org/lesson/373814/clone/)
+- [init project](https://cogniterra.org/lesson/28545/clone/)

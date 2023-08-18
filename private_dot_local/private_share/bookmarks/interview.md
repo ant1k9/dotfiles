@@ -30,6 +30,7 @@
       - [Tune Linux Kernel Parameters For PostgreSQL Optimization](https://www.percona.com/blog/2018/08/29/tune-linux-kernel-parameters-for-postgresql-optimization/)
       - [10 Common PostgreSQL Errors](https://www.percona.com/blog/2020/06/05/10-common-postgresql-errors/)
       - [How to prettify the JSON output in PostgreSQL®](https://ftisiot.net/postgresqljson/how-to-prettify-json-output-in-postgresql/)
+      - [EXPLAIN GENERIC_PLAN: New in PostgreSQL 16](https://www.cybertec-postgresql.com/en/explain-generic-plan-postgresql-16/)
     - **MySQL/MariaDB**
       - [What if … MySQL’s repeatable reads cause you to lose money?](http://www.tusacentral.com/joomla/index.php/mysql-blogs/244-what-if-mysql-s-repeatable-reads-cause-you-to-lose-money)
     - SQLite3
@@ -52,6 +53,7 @@
     - Tutorials
       - [Build a NoSQL Database From Scratch in 1000 Lines of Code](https://betterprogramming.pub/build-a-nosql-database-from-the-scratch-in-1000-lines-of-code-8ed1c15ed924)
   - [A Comparison of Advanced, Modern Cloud Databases](https://brandur.org/cloud-databases)
+  - [Mastering the Art of Caching for System Design Interviews: A Complete Guide](https://levelup.gitconnected.com/master-the-art-of-caching-for-system-design-interviews-a-complete-guide-676bb49d194)
 - Operating systems
   - Linux
     - Ubuntu/Debian
@@ -93,8 +95,10 @@
   - Complexity
   - Distributed algorithms
     - [Paxos, Raft, EPaxos: How Has Distributed Consensus Technology Evolved?](https://www.alibabacloud.com/blog/paxos-raft-epaxos-how-has-distributed-consensus-technology-evolved_597127)
+    - [How to do distributed locking](https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html)
     - Gossip
     - Paxos
+      - [Paxos](https://martinfowler.com/articles/patterns-of-distributed-systems/paxos.html)
     - Raft
       - [Implementing Raft](https://eli.thegreenplace.net/2020/implementing-raft-part-0-introduction/)
     - Protocols
@@ -124,6 +128,8 @@
   - CI/CD
     - Gitlab
     - Github
+- SRE
+  - [SRE/DevOps Interview Questions — Linux Troubleshooting](https://awstip.com/sre-devops-interview-questions-linux-troubleshooting-1b8ffe82c16)
 - Multithreaded programming
   - Synchonization primitives
     - [Go: sync.RWMutex internals and usage explained](https://sreramk.medium.com/go-sync-rwmutex-internals-and-usage-explained-9eb15865bba)
@@ -133,6 +139,8 @@
   - OSI model
     - [The OSI Model – The 7 Layers of Networking Explained](https://www.freecodecamp.org/news/osi-model-networking-layers-explained-in-plain-english/)
     - [List of network protocols (OSI model)](https://www.wikiwand.com/en/List_of_network_protocols_(OSI_model))
+    - [Load Balancing](https://samwho.dev/load-balancing/)
+    - [Stop using Telnet to test ports](https://www.redhat.com/sysadmin/stop-using-telnet-test-port)
     - Presentation Layer
       - [JSON-RPC vs REST for distributed platform APIs](https://dev.to/radixdlt/json-rpc-vs-rest-for-distributed-platform-apis-3n0m)
       - HTTP/HTTPS
@@ -166,6 +174,8 @@
   - Memory
     - [SRAM VS DRAM: What Is the Difference Between Them](https://www.minitool.com/news/sram-vs-dram.html)
     - [Virtual Memory](https://www.indeed.com/career-advice/career-development/virtual-memory)
+- System Programming
+  - [Modern garbage collection](https://blog.plan99.net/modern-garbage-collection-911ef4f8bd8e)
 - Testing
   - [Testing Without Mocks: A Pattern Language](https://www.jamesshore.com/v2/projects/testing-without-mocks/testing-without-mocks)
 - Productivity
