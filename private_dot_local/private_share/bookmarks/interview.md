@@ -31,6 +31,8 @@
       - [10 Common PostgreSQL Errors](https://www.percona.com/blog/2020/06/05/10-common-postgresql-errors/)
       - [How to prettify the JSON output in PostgreSQL®](https://ftisiot.net/postgresqljson/how-to-prettify-json-output-in-postgresql/)
       - [EXPLAIN GENERIC_PLAN: New in PostgreSQL 16](https://www.cybertec-postgresql.com/en/explain-generic-plan-postgresql-16/)
+      - [Buffer analysis when using EXPLAIN ANALYSE in Postgres](https://willj.net/posts/buffer-analysis-when-using-explain-analyse-in-postgres/)
+      - [Optimizing Postgres's Autovacuum for High-Churn Tables](https://tembo.io/blog/optimizing-postgres-auto-vacuum/)
     - **MySQL/MariaDB**
       - [What if … MySQL’s repeatable reads cause you to lose money?](http://www.tusacentral.com/joomla/index.php/mysql-blogs/244-what-if-mysql-s-repeatable-reads-cause-you-to-lose-money)
     - SQLite3
@@ -70,6 +72,7 @@
     - [Common Anti-Patterns in Go Web Applications](https://threedots.tech/post/common-anti-patterns-in-go-web-applications/)
     - [Profile-guided optimization preview](https://go.dev/blog/pgo-preview)
     - [Coverage profiling support for integration tests](https://go.dev/testing/coverage/)
+    - [print(“lol”) doubled the speed of my Go function](https://medium.com/@ludirehak/printing-lol-doubled-the-speed-of-my-go-code-e32e02fc3f92)
   - Python
   - Rust
     - [Learn Macros In Rust](https://github.com/tfpk/macrokata)
@@ -116,9 +119,11 @@
     - [A visual guide on troubleshooting Kubernetes deployments](https://learnk8s.io/troubleshooting-deployments)
     - [Kubernetes Deployment Antipatterns](https://medium.com/containers-101/kubernetes-deployment-antipatterns-part-1-9e7b54a08b9)
     - [Cgroups - Deep Dive into Resource Management in Kubernetes](https://martinheinz.dev/blog/91)
+    - [Kubernetes Basics: Understanding Pods, Deployments, and Services](https://iximiuz.com/en/posts/kubernetes-vs-age-old-infra-patterns/)
   - Git
     - [Git Commands You Probably Do Not Need](https://myme.no/posts/2023-01-22-git-commands-you-do-not-need.html)
     - [How to Improve Performance in Git: The Complete Guide](https://www.git-tower.com/blog/git-performance/)
+    - [Tracking SQLite Database Changes in Git](https://garrit.xyz/posts/2023-11-01-tracking-sqlite-database-changes-in-git)
   - Docker
     - **Podman**:
       - [Podman socket activation](https://github.com/containers/podman/blob/main/docs/tutorials/socket_activation.md)

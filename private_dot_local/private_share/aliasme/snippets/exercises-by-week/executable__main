@@ -4,9 +4,10 @@
 # Args: false
 
 sqlite3 -separator "," "$DIARY_DB" "
-    SELECT 'date', 'push-ups', 'pull-ups', 'leg-raises', 'squatting'
+    SELECT 'date', 'push-ups', 'pull-ups', 'leg-raises', 'squatting', 'rating'
     UNION
-    SELECT week, SUM(push_ups), SUM(pull_ups), SUM(leg_raises), SUM(squatting)
+    SELECT week, SUM(push_ups), SUM(pull_ups), SUM(leg_raises), SUM(squatting),
+        ROUND(SUM(push_ups) + SUM(pull_ups) * 1.5 + SUM(leg_raises) * 2 + SUM(squatting) / 3) as rating
     FROM (
         SELECT strftime('%Y/%W', date, 'localtime', 'weekday 0', '-6 days') as week, push_ups, pull_ups, squatting, leg_raises
         FROM exercises
